@@ -28,7 +28,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer id='footer' className='mt-16 px-4 py-8 flex flex-row justify-between bg-background'>
+    <footer id='footer' className='mt-16 px-4 py-8 flex flex-row justify-between bg-background border-t-2 border-primary'>
       <div id='ft-copyright' className='text-sm text-foreground'>
         © 2026 Yujin Cho.
           <br />
