@@ -160,6 +160,18 @@
   --sidebar-ring: #3b82f6;
 }
 
+.logo-text-outline {
+  text-shadow:
+    -1px -1px 0 var(--input),
+     0 -1px 0 var(--input),
+     1px -1px 0 var(--input),
+    -1px  0   0 var(--input),
+     1px  0   0 var(--input),
+    -1px  1px 0 var(--input),
+     0  1px 0 var(--input),
+     1px  1px 0 var(--input);
+}
+
 * {
   border-color: var(--border);
 }
