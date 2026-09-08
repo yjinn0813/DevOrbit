@@ -73,8 +73,11 @@
 ## 5. 디렉토리 구조
 ```bash
 📦DevOrbit
- ┣ 📂public
- ┃ ┗ 📜favicon.svg
+ ┣  📂public
+ ┃ ┣ 📂favicon
+ ┃ ┃ ┗ 📜DevOrbit.svg
+ ┃ ┣ 📂fonts
+ ┃ ┃ ┗ 📜PretendardStdVariable.woff2
  ┣ 📂src
  ┃ ┣ 📂api
  ┃ ┃ ┗ 📜github.ts
@@ -82,16 +85,26 @@
  ┃ ┃ ┗ 📜.gitkeep
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂common
+ ┃ ┃ ┃ ┣ 📜DarkMode.tsx
  ┃ ┃ ┃ ┣ 📜Footer.tsx
- ┃ ┃ ┃ ┗ 📜Header.tsx
- ┃ ┃ ┗ 📂dashboard
+ ┃ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┃ ┣ 📜Logo.tsx
+ ┃ ┃ ┃ ┗ 📜SearchBar.tsx
+ ┃ ┃ ┣ 📂dashboard
  ┃ ┃ ┃ ┣ 📜CommitLineChart.tsx
  ┃ ┃ ┃ ┣ 📜LanguageChart.tsx
  ┃ ┃ ┃ ┣ 📜ProfileHeader.tsx
  ┃ ┃ ┃ ┗ 📜StackChart.tsx
+ ┃ ┃ ┗ 📂ui
+ ┃ ┃ ┃ ┣ 📜button.tsx
+ ┃ ┃ ┃ ┣ 📜input-group.tsx
+ ┃ ┃ ┃ ┣ 📜input.tsx
+ ┃ ┃ ┃ ┗ 📜textarea.tsx
  ┃ ┣ 📂hooks
  ┃ ┃ ┣ 📜useGithubRepo.ts
  ┃ ┃ ┗ 📜useGithubUser.ts
+ ┃ ┣ 📂lib
+ ┃ ┃ ┗ 📜utils.ts
  ┃ ┣ 📂pages
  ┃ ┃ ┣ 📜Detail.tsx
  ┃ ┃ ┣ 📜Home.tsx
@@ -106,6 +119,7 @@
  ┃ ┗ 📜queryClient.tsx
  ┣ 📜.gitignore
  ┣ 📜README.md
+ ┣ 📜components.json
  ┣ 📜eslint.config.js
  ┣ 📜index.html
  ┣ 📜package.json
