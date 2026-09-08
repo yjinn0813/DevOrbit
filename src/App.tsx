@@ -4,7 +4,6 @@ import Footer from './components/common/Footer';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NotFound from './pages/NotFound';
-import './App.css'
 
 export default function App() {
   return (
