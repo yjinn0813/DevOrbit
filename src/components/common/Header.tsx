@@ -9,7 +9,10 @@ const Header = () => {
 
   return (
     <header id='header' className='flex flex-row justify-between items-center px-3 py-4 border-b-2 border-primary bg-background'>
-      <Logo />
+      <div className='flex flex-row gap-2 items-center'>
+        <img src="/favicon/DevOrbit.svg" alt="DevOrbit" height="34" width="34" />
+        <Logo className="text-xl" />
+      </div>
       <div className='flex flex-row gap-4 items-center'>
         {isDetailPage && <SearchBar />}
         <DarkMode />
