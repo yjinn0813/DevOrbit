@@ -28,7 +28,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer id='footer' className='mt-16 px-4 py-8 flex flex-row justify-between bg-background border-t-2 border-primary'>
+    <footer id='footer' className='px-4 py-5 flex flex-row justify-between bg-background border-t-2 border-secondary'>
       <div id='ft-copyright' className='text-sm text-foreground'>
         © 2026 Yujin Cho.
           <br />
@@ -42,7 +42,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-foreground transition-colors hover:text-primary"
+              className="text-foreground transition-colors hover:text-secondary"
             >
               <Icon size={20} />
             </a>

@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div id='container' className='flex flex-col min-h-screen'>
       <Header />
-      <main id='wrap' className='flex flex-col grow'>
+      <main id='wrap' className='flex flex-1 flex-col bg-surface-light dark:bg-background'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/detail/:username" element={<Detail />} />
