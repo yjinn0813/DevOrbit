@@ -107,6 +107,7 @@
  ┃ ┃ ┗ 📜utils.ts
  ┃ ┣ 📂pages
  ┃ ┃ ┣ 📜Detail.tsx
+ ┃ ┃ ┣ 📜Error.tsx
  ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┗ 📜NotFound.tsx
  ┃ ┣ 📂types
