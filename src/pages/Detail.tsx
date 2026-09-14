@@ -1,7 +1,12 @@
-import React from 'react'
+/* Detail page */
+import ProfileHeader from '../components/dashboard/ProfileHeader';
 
-export default function Detail() {
+const Detail = () => {
   return (
-    <div>Detail</div>
-  )
-}
+    <div>
+      <ProfileHeader />
+    </div>
+  );
+};
+
+export default Detail;
