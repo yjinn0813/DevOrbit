@@ -1,4 +1,4 @@
-import React from 'react'
+/* Detail page - Top languages card */
 
 export default function LanguageChart() {
   return (

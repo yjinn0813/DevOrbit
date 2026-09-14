@@ -63,6 +63,7 @@
 | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white) | 원격 저장소 및 배포 소스 관리 |
 | ![VScode](https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white) | 코드 작성 및 개발 환경 |
 | ![vite](https://img.shields.io/badge/vite-646CFF?style=flat-square&logo=vite&logoColor=white) | 빠른 개발 서버 및 빌드 환경 구성 |
+| ![express](https://img.shields.io/badge/express-000000?style=flat-square&logo=express&logoColor=white) | 로컬 API 서버 및 GitHub GraphQL 요청 처리 |
 | ![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=white) | 효율적인 의존성 관리와 빠른 패키지 설치 |
 | ![eslint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white) | 코드 품질 및 규칙 일관성 유지 |
 | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | 자동 빌드 및 배포 환경 제공 |
@@ -73,11 +74,13 @@
 ## 5. 디렉토리 구조
 ```bash
 📦DevOrbit
- ┣  📂public
+ ┣ 📂public
  ┃ ┣ 📂favicon
  ┃ ┃ ┗ 📜DevOrbit.svg
  ┃ ┣ 📂fonts
  ┃ ┃ ┗ 📜PretendardStdVariable.woff2
+ ┣ 📂server
+ ┃ ┗ 📜github.ts
  ┣ 📂src
  ┃ ┣ 📂api
  ┃ ┃ ┗ 📜github.ts
@@ -89,19 +92,20 @@
  ┃ ┃ ┃ ┣ 📜Footer.tsx
  ┃ ┃ ┃ ┣ 📜Header.tsx
  ┃ ┃ ┃ ┣ 📜Logo.tsx
- ┃ ┃ ┃ ┗ 📜SearchBar.tsx
+ ┃ ┃ ┃ ┣ 📜SearchBar.tsx
+ ┃ ┃ ┃ ┗ 📜Starfield.tsx
  ┃ ┃ ┣ 📂dashboard
- ┃ ┃ ┃ ┣ 📜CommitLineChart.tsx
+ ┃ ┃ ┃ ┣ 📜ActivityStats.tsx
  ┃ ┃ ┃ ┣ 📜LanguageChart.tsx
  ┃ ┃ ┃ ┣ 📜ProfileHeader.tsx
- ┃ ┃ ┃ ┗ 📜StackChart.tsx
+ ┃ ┃ ┃ ┗ 📜RepoStats.tsx
  ┃ ┃ ┗ 📂ui
  ┃ ┃ ┃ ┣ 📜button.tsx
+ ┃ ┃ ┃ ┣ 📜card.tsx
  ┃ ┃ ┃ ┣ 📜input-group.tsx
  ┃ ┃ ┃ ┣ 📜input.tsx
  ┃ ┃ ┃ ┗ 📜textarea.tsx
  ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜useGithubRepo.ts
  ┃ ┃ ┗ 📜useGithubUser.ts
  ┃ ┣ 📂lib
  ┃ ┃ ┗ 📜utils.ts
@@ -118,6 +122,7 @@
  ┃ ┣ 📜index.css
  ┃ ┣ 📜main.tsx
  ┃ ┗ 📜queryClient.tsx
+ ┣ 📜.env.local
  ┣ 📜.gitignore
  ┣ 📜README.md
  ┣ 📜components.json
@@ -125,6 +130,7 @@
  ┣ 📜index.html
  ┣ 📜package.json
  ┣ 📜pnpm-lock.yaml
+ ┣ 📜pnpm-workspace.yaml
  ┣ 📜tsconfig.app.json
  ┣ 📜tsconfig.json
  ┣ 📜tsconfig.node.json
