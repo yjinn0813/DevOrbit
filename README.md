@@ -84,8 +84,6 @@
  ┣ 📂src
  ┃ ┣ 📂api
  ┃ ┃ ┗ 📜github.ts
- ┃ ┣ 📂assets
- ┃ ┃ ┗ 📜.gitkeep
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂common
  ┃ ┃ ┃ ┣ 📜DarkMode.tsx
@@ -114,10 +112,6 @@
  ┃ ┃ ┣ 📜Error.tsx
  ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┗ 📜NotFound.tsx
- ┃ ┣ 📂types
- ┃ ┃ ┗ 📜github.ts
- ┃ ┣ 📂utils
- ┃ ┃ ┗ 📜chartFormatters.ts
  ┃ ┣ 📜App.tsx
  ┃ ┣ 📜index.css
  ┃ ┣ 📜main.tsx
