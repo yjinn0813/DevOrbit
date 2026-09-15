@@ -16,12 +16,17 @@ const query = `
       avatarUrl
       createdAt
 
-      repositories(first: 100, ownerAffiliations: OWNER) {
+      repositories(
+        first: 100, 
+        ownerAffiliations: OWNER,
+        isFork: false
+      ) {
         totalCount
 
         nodes {
           name
           stargazerCount
+          forkCount
 
           languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
             edges {
@@ -35,9 +40,6 @@ const query = `
       }
 
       contributionsCollection {
-        startedAt
-        endedAt
-
         totalCommitContributions
         totalIssueContributions
         totalPullRequestContributions
@@ -62,6 +64,18 @@ const query = `
           contributions(first: 100) {
             nodes {
               commitCount
+              occurredAt
+            }
+          }
+        }
+
+        pullRequestContributionsByRepository(maxRepositories: 25) {
+          repository {
+            name
+          }
+
+          contributions(first: 100) {
+            nodes {
               occurredAt
             }
           }
