@@ -19,20 +19,24 @@
 
 ## 3. 주요 기능 및 페이지 구성
 ### Home
-- 검색창을 통한 GitHub username 검색
-- 검색 결과에 따라 Detail 페이지로 이동
-- 잘못된 username 입력 시 예외 처리
+* GitHub GraphQL API를 활용한 username 검색
+* 검색 결과에 따른 Detail 페이지 이동
+* 잘못된 username 입력 및 GitHub 사용자 조회 오류 처리
 
 ### Detail
-- GitHub 사용자 프로필 및 기본 정보 제공
-- Repository 및 개발 활동 데이터 조회
-- Top Languages, Tech Stack 등 GitHub 데이터를 카드 형태로 시각화
-- Chart.js를 활용한 언어 비율 및 개발 활동 차트 제공
-- 각 데이터를 독립적인 Detail Card 형태로 구성
+* GitHub 사용자 프로필 및 기본 정보 제공
+* GitHub Contribution 데이터를 기반으로 한 Tier 제공
+* GitHub Contribution 및 Repository 통계 제공
+* Chart.js를 활용한 월별 Contribution 추이 및 Top Languages 시각화
+* 최근 1년간 활동을 기준으로 한 Most Active Repository 제공
+* 연속 Contribution 기록을 기반으로 한 Longest Contribution Streak 제공
+* shadcn/ui를 활용한 Card, Tooltip, Input, Button 등 UI 구성
+* 각 데이터를 독립적인 Card Component로 구성
+* 반응형 레이아웃 지원
 
 ### Not Found
-- 존재하지 않는 경로 접근 시 404 페이지 제공
-- 잘못된 URL 접근에 대한 예외 처리
+* 존재하지 않는 경로 접근 시 404 페이지 제공
+* 잘못된 URL 접근에 대한 예외 처리
 
 <br>
 
@@ -46,7 +50,7 @@
 | ![React Query](https://img.shields.io/badge/React_Query-FF4154?style=flat-square&logo=reactquery&logoColor=white) | API 데이터 fetching 및 캐싱 |
 | ![Zustand](https://img.shields.io/badge/Zustand-433E38?style=flat-square&logo=zustand&logoColor=white) | 클라이언트 전역 상태 관리 |
 | ![ChartJS](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chart.js&logoColor=white) | GitHub 데이터를 차트 형태로 시각화 |
-| `GitHub REST API` | GitHub 사용자 및 Repository 데이터 조회 |
+| `GitHub GraphQL API` | GitHub 사용자 및 Repository 데이터 조회 |
 | `React Router` | 페이지 라우팅 및 404 예외 처리 |
 
 ### Styling & UI
@@ -89,20 +93,40 @@
  ┃ ┃ ┃ ┣ 📜DarkMode.tsx
  ┃ ┃ ┃ ┣ 📜Footer.tsx
  ┃ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┃ ┣ 📜InfoTooltip.tsx
  ┃ ┃ ┃ ┣ 📜Logo.tsx
  ┃ ┃ ┃ ┣ 📜SearchBar.tsx
  ┃ ┃ ┃ ┗ 📜Starfield.tsx
  ┃ ┃ ┣ 📂dashboard
+ ┃ ┃ ┃ ┣ 📂skeleton
+ ┃ ┃ ┃ ┃ ┣ 📜ActiveRepoSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜ActivitySkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜LanguageSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜ProfileSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜RepoSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜StreakSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜TierSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜TrendSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜ActiveRepo.tsx
  ┃ ┃ ┃ ┣ 📜ActivityStats.tsx
+ ┃ ┃ ┃ ┣ 📜ContributionStreak.tsx
+ ┃ ┃ ┃ ┣ 📜ContributionTrend.tsx
+ ┃ ┃ ┃ ┣ 📜DetailSkeleton.tsx
  ┃ ┃ ┃ ┣ 📜LanguageChart.tsx
  ┃ ┃ ┃ ┣ 📜ProfileHeader.tsx
- ┃ ┃ ┃ ┗ 📜RepoStats.tsx
+ ┃ ┃ ┃ ┣ 📜RepoStats.tsx
+ ┃ ┃ ┃ ┗ 📜TierBadge.tsx
  ┃ ┃ ┗ 📂ui
  ┃ ┃ ┃ ┣ 📜button.tsx
  ┃ ┃ ┃ ┣ 📜card.tsx
  ┃ ┃ ┃ ┣ 📜input-group.tsx
  ┃ ┃ ┃ ┣ 📜input.tsx
- ┃ ┃ ┃ ┗ 📜textarea.tsx
+ ┃ ┃ ┃ ┣ 📜skeleton.tsx
+ ┃ ┃ ┃ ┣ 📜textarea.tsx
+ ┃ ┃ ┃ ┗ 📜tooltip.tsx
+ ┃ ┣ 📂constants
+ ┃ ┃ ┣ 📜LangColors.ts
+ ┃ ┃ ┗ 📜TierConfig.ts
  ┃ ┣ 📂hooks
  ┃ ┃ ┗ 📜useGithubUser.ts
  ┃ ┣ 📂lib
