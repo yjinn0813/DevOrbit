@@ -1,33 +1,11 @@
 /* Active Repository: 최근 1년 안에 가장 많이 (커밋+pr)한 레포 순위 */
 
 import { Card, CardContent } from '../ui/card';
+import type { GithubUser } from '../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
 
 interface ActiveRepoProps {
-  user: {
-    contributionsCollection: {
-      commitContributionsByRepository: {
-        repository: {
-          name: string;
-        };
-        contributions: {
-          nodes: {
-            commitCount: number;
-          }[];
-        };
-      }[];
-      pullRequestContributionsByRepository: {
-        repository: {
-          name: string;
-        };
-        contributions: {
-          nodes: {
-            occurredAt: string;
-          }[];
-        };
-      }[];
-    };
-  };
+  user: GithubUser;
 }
 
 const ActiveRepo = ({ user }: ActiveRepoProps) => {

@@ -3,23 +3,13 @@
 import { CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { Card, CardContent } from '../ui/card';
+import type { GithubUser } from '../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Tooltip );
 
 interface ContributionTrendProps {
-  user: {
-    contributionsCollection: {
-      contributionCalendar: {
-        weeks: {
-          contributionDays: {
-            date: string;
-            contributionCount: number;
-          }[];
-        }[];
-      };
-    };
-  };
+  user: GithubUser;
 }
 
 // ====================

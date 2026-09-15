@@ -136,6 +136,8 @@
  ┃ ┃ ┣ 📜Error.tsx
  ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┗ 📜NotFound.tsx
+ ┃ ┣ 📂types
+ ┃ ┃ ┗ 📜github.ts
  ┃ ┣ 📜App.tsx
  ┃ ┣ 📜index.css
  ┃ ┣ 📜main.tsx

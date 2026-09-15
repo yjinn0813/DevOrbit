@@ -1,14 +1,10 @@
 /* Detail page - profile card */
 
 import { Card, CardContent } from '../ui/card';
+import type { GithubUser } from '../../types/GithubUser';
 
 interface ProfileHeaderProps {
-  user: {
-    name: string | null;
-    login: string;
-    avatarUrl: string;
-    createdAt: string;
-  };
+  user: GithubUser;
 }
 
 // ====================

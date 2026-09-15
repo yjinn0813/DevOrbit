@@ -4,25 +4,13 @@ import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, Tooltip } fro
 import { Bar } from 'react-chartjs-2';
 import { Card, CardContent } from '../ui/card'; 
 import InfoTooltip from '../common/InfoTooltip';
+import type { GithubUser } from '../../types/GithubUser';
 import { languageColors } from '../../constants/LangColors';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 interface LanguageChartProps {
-  user: {
-    repositories: {
-      nodes: {
-        languages: {
-          edges: {
-            size: number;
-            node: {
-              name: string;
-            };
-          }[];
-        };
-      }[];
-    };
-  };
+  user: GithubUser;
 }
 
 // ====================
