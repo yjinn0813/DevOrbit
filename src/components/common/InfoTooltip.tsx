@@ -15,7 +15,7 @@ const InfoTooltip = ({ content }: InfoTooltipProps) => {
         <Info size={15} className="text-muted-foreground" />
       </TooltipTrigger>
 
-      <TooltipContent>
+      <TooltipContent className="border border-secondary/50 shadow-md">
         <p>{content}</p>
       </TooltipContent>
     </Tooltip>
