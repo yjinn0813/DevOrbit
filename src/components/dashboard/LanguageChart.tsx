@@ -97,14 +97,18 @@ const LanguageChart = ({ user }: LanguageChartProps) => {
           <InfoTooltip content='Language distribution across the user owned, non-fork repositories, based on code size' />
         </div>
 
-        <div className="mt-6 flex flex-row items-center justify-center gap-10">
+        <div className="mt-6 flex flex-col items-center justify-center gap-6 md:flex-row md:gap-10">
           {/* Chart */}
-          <div className='h-80 w-full md:w-[55%]'>
+          <div className='h-64 w-full md:h-80 md:w-[55%]'>
             <Bar data={chartData} options={options} />
           </div>
           
           {/* Legend */}
-          <div className="flex flex-col gap-3">
+          <div className="
+            grid grid-cols-1 gap-y-3
+            min-[481px]:grid-cols-2 min-[481px]:gap-x-12
+            md:grid-cols-1
+          ">
             {languages.map((language) => (
               <div key={language.name} className="flex items-center gap-2">
                 <div
