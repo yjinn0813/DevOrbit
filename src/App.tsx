@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { TooltipProvider } from "./components/ui/tooltip";
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './pages/Home';
@@ -8,16 +9,18 @@ import './index.css';
 
 export default function App() {
   return (
-    <div id='container' className='flex flex-col min-h-screen'>
-      <Header />
-      <main id='wrap' className='flex flex-1 flex-col bg-surface-light dark:bg-background'>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/detail/:username" element={<Detail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <TooltipProvider>
+      <div id='container' className='flex flex-col min-h-screen'>
+        <Header />
+        <main id='wrap' className='flex flex-1 flex-col bg-surface-light dark:bg-background'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/detail/:username" element={<Detail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </TooltipProvider>
   )
 }
