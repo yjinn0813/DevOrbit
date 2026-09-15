@@ -1,24 +1,18 @@
 /* Detail page - profile card */
 
-import { useParams } from "react-router-dom";
-import { useGithubUser } from "../../hooks/useGithubUser";
 import { Card, CardContent } from '../ui/card';
 
-// ==========
-const ProfileHeader = () => {
-  const { username } = useParams();
-  const { data, isLoading, isError } = useGithubUser(username ?? "");
+interface ProfileHeaderProps {
+  user: {
+    name: string | null;
+    login: string;
+    avatarUrl: string;
+    createdAt: string;
+  };
+}
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError || !data?.data?.user) {
-    return <div>Failed to load GitHub user.</div>;
-  }
-
-  const user = data.data.user;
-  
+// ====================
+const ProfileHeader = ({ user }: ProfileHeaderProps) => {
   const createdDate = new Date(user.createdAt); // 가입일자 조회
   const today = new Date();
   createdDate.setHours(0, 0, 0, 0);
@@ -28,7 +22,7 @@ const ProfileHeader = () => {
     Math.floor((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
   
   return (
-    <Card className="m-5 bg-foreground dark:bg-card">
+    <Card className="border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-row items-center">
         <img
           src={user.avatarUrl}
