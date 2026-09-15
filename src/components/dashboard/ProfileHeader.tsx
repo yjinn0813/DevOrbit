@@ -18,7 +18,7 @@ const ProfileHeader = ({ user }: ProfileHeaderProps) => {
     Math.floor((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
   
   return (
-    <Card className="border border-secondary/50 bg-foreground dark:bg-card">
+    <Card className="min-h-46 border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-row items-center">
         <img
           src={user.avatarUrl}

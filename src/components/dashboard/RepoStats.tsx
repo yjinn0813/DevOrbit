@@ -26,7 +26,7 @@ const RepoStats = ({ user }: RepoProps) => {
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
           <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
-            Repository Overview
+            Repositories
           </div>
           <InfoTooltip content='Statistics based on repositories currently owned by the user (including stars, forks, and contributions to other repositories)'/>
         </div>

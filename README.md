@@ -137,7 +137,7 @@
  ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┗ 📜NotFound.tsx
  ┃ ┣ 📂types
- ┃ ┃ ┗ 📜github.ts
+ ┃ ┃ ┗ 📜GithubUser.ts
  ┃ ┣ 📜App.tsx
  ┃ ┣ 📜index.css
  ┃ ┣ 📜main.tsx
