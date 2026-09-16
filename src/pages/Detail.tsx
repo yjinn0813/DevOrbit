@@ -7,6 +7,7 @@ import ActivityStats from '../components/dashboard/ActivityStats';
 import RepoStats from '../components/dashboard/RepoStats';
 import LanguageChart from '../components/dashboard/LanguageChart';
 import ContributionTrend from '../components/dashboard/ContributionTrend';
+import YearlyTrend from '../components/dashboard/YearlyTrend';
 import ActiveRepo from '../components/dashboard/ActiveRepo';
 import ContributionStreak from '../components/dashboard/ContributionStreak';
 import TierBadge from '../components/dashboard/TierBadge';
@@ -59,6 +60,10 @@ const Detail = () => {
 
         <div className="md:col-span-2">
           <ContributionTrend user={user} />
+        </div>
+        
+        <div className="md:col-span-2">
+          <YearlyTrend user={user} />
         </div>
       </div>
 
