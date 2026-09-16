@@ -33,7 +33,8 @@ const Detail = () => {
   }
 
   const user = data.data.user;
-  
+
+  // ====================
   return (
     <div className="mx-5 my-7 flex flex-col gap-5">
       {/* Profile + Tier */}
@@ -59,9 +60,16 @@ const Detail = () => {
         <div className="md:col-span-2">
           <ContributionTrend user={user} />
         </div>
+      </div>
 
-        <ActiveRepo user={user} />
-        <ContributionStreak />
+      {/* repos + streak */}
+      <div className='grid grid-cols-1 gap-5 md:grid-cols-5'>
+        <div className='md:col-span-2'>
+          <ActiveRepo user={user} />
+        </div>
+        <div className='md:col-span-3'>
+          <ContributionStreak user={user} />
+        </div>
       </div>
     </div>
   );

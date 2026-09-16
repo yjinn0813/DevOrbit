@@ -26,11 +26,29 @@ export interface GithubUser {
   };
 
   contributionsCollection: {
+    totalContributions: number;
     totalCommitContributions: number;
     totalIssueContributions: number;
     totalPullRequestContributions: number
     totalRepositoriesWithContributedCommits: number;
     contributionYears: number[];
+
+    activeDays: number;
+    currentStreak: {
+      count: number;
+      endDate: string;
+      startDate: string;
+    };
+    longestStreak: {
+      count: number;
+      endDate: string;
+      startDate: string;
+    };
+
+    yearlyContributions: {
+      year: number;
+      count: number;
+    }[];
 
     contributionCalendar: {
       totalContributions: number;
