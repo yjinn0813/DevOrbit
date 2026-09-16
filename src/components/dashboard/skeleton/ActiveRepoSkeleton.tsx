@@ -5,7 +5,7 @@ import { Skeleton } from "../../../components/ui/skeleton";
 
 const ActiveRepoSkeleton = () => {
   return (
-    <Card className="border border-secondary/50 bg-foreground dark:bg-card">
+    <Card className="min-h-70 border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-col">
         <div className="flex items-baseline gap-2.5">
           <Skeleton className="h-9 w-64 max-[420px]:h-8 max-[420px]:w-48" />

@@ -3,7 +3,7 @@ import { Skeleton } from "../../../components/ui/skeleton";
 
 const ProfileSkeleton = () => {
   return (
-    <Card className="border border-secondary/50 bg-foreground dark:bg-card">
+    <Card className="min-h-46 border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-row items-center">
         <Skeleton className="size-32 shrink-0 rounded-full max-[420px]:size-20" />
 
