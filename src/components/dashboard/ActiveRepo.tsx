@@ -62,7 +62,7 @@ const ActiveRepo = ({ user }: ActiveRepoProps) => {
           <InfoTooltip content='Repositories ranked by combined commit and pull request activity over the past year'/>
         </div>
         
-        <div className="mt-6 flex flex-col gap-2">
+        <div className="mt-6 flex flex-col gap-2.5">
           {topRepos.length === 0 ? (
             <EmptyState />
           ) : (
