@@ -10,7 +10,6 @@ const TrendSkeleton = () => {
         {/* Title */}
         <div className="flex items-baseline gap-2.5">
           <Skeleton className="h-9 w-64 max-[420px]:h-8 max-[420px]:w-48" />
-          <Skeleton className="size-4 rounded-full" />
         </div>
 
         {/* Chart */}

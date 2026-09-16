@@ -8,7 +8,6 @@ const LanguageSkeleton = () => {
         {/* Title */}
         <div className="flex items-baseline gap-2.5">
           <Skeleton className="h-9 w-48 max-[420px]:h-8 max-[420px]:w-40" />
-          <Skeleton className="size-4 rounded-full" />
         </div>
 
         {/* Chart + Legend */}

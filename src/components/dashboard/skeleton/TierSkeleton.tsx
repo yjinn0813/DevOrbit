@@ -10,7 +10,6 @@ export default function TierSkeleton() {
         {/* Title */}
         <div className="flex items-baseline gap-2.5">
           <Skeleton className="h-9 w-16 max-[420px]:h-7 max-[420px]:w-14" />
-          <Skeleton className="h-4 w-4 rounded-full" />
         </div>
 
         {/* Tier */}
