@@ -1,6 +1,7 @@
 /* Detail page */
 import { useParams } from "react-router-dom";
 import { useGithubUser } from "../hooks/useGithubUser";
+import useTitle from '../hooks/useTitle';
 import ProfileHeader from '../components/dashboard/ProfileHeader';
 import ActivityStats from '../components/dashboard/ActivityStats';
 import RepoStats from '../components/dashboard/RepoStats';
@@ -17,6 +18,7 @@ import NotFound from './NotFound';
 const Detail = () => {
   const { username } = useParams();
   const { data, isLoading, isError } = useGithubUser(username ?? "");
+  useTitle(`${username}`);
 
   if (isLoading) {
     return <DetailSkeleton />
@@ -41,7 +43,7 @@ const Detail = () => {
         </div>
 
         <div className="md:col-span-2">
-          <TierBadge />
+          <TierBadge user={user} />
         </div>
       </div>
 

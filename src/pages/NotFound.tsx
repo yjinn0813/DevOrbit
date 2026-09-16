@@ -1,9 +1,12 @@
 /* 존재하지 않는 유저, 페이지 */
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Starfield from '../components/common/Starfield';
+import useTitle from '../hooks/useTitle';
 
 const NotFound = () => {
+  useTitle('404');
+
   return (
     <div className="relative my-auto flex flex-col items-center justify-center text-center">
       <Starfield />
