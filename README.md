@@ -72,7 +72,6 @@
 | ![eslint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white) | 코드 품질 및 규칙 일관성 유지 |
 | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | 자동 빌드 및 배포 환경 제공 |
 
-
 <br>
 
 ## 5. 디렉토리 구조
@@ -84,13 +83,18 @@
  ┃ ┣ 📂fonts
  ┃ ┃ ┗ 📜PretendardStdVariable.woff2
  ┣ 📂server
- ┃ ┗ 📜github.ts
+ ┃ ┣ 📂utils
+ ┃ ┃ ┗ 📜contribution.ts
+ ┃ ┣ 📜contributionHistory.ts
+ ┃ ┣ 📜githubUser.ts
+ ┃ ┗ 📜index.ts
  ┣ 📂src
  ┃ ┣ 📂api
  ┃ ┃ ┗ 📜github.ts
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂common
  ┃ ┃ ┃ ┣ 📜DarkMode.tsx
+ ┃ ┃ ┃ ┣ 📜EmptyState.tsx
  ┃ ┃ ┃ ┣ 📜Footer.tsx
  ┃ ┃ ┃ ┣ 📜Header.tsx
  ┃ ┃ ┃ ┣ 📜InfoTooltip.tsx
@@ -106,16 +110,19 @@
  ┃ ┃ ┃ ┃ ┣ 📜RepoSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜StreakSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜TierSkeleton.tsx
- ┃ ┃ ┃ ┃ ┗ 📜TrendSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜TrendSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜YearlyTrendSkeleton.tsx
  ┃ ┃ ┃ ┣ 📜ActiveRepo.tsx
  ┃ ┃ ┃ ┣ 📜ActivityStats.tsx
  ┃ ┃ ┃ ┣ 📜ContributionStreak.tsx
  ┃ ┃ ┃ ┣ 📜ContributionTrend.tsx
  ┃ ┃ ┃ ┣ 📜DetailSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜GemIcon.tsx
  ┃ ┃ ┃ ┣ 📜LanguageChart.tsx
  ┃ ┃ ┃ ┣ 📜ProfileHeader.tsx
  ┃ ┃ ┃ ┣ 📜RepoStats.tsx
- ┃ ┃ ┃ ┗ 📜TierBadge.tsx
+ ┃ ┃ ┃ ┣ 📜TierBadge.tsx
+ ┃ ┃ ┃ ┗ 📜YearlyTrend.tsx
  ┃ ┃ ┗ 📂ui
  ┃ ┃ ┃ ┣ 📜button.tsx
  ┃ ┃ ┃ ┣ 📜card.tsx
@@ -128,7 +135,8 @@
  ┃ ┃ ┣ 📜LangColors.ts
  ┃ ┃ ┗ 📜TierConfig.ts
  ┃ ┣ 📂hooks
- ┃ ┃ ┗ 📜useGithubUser.ts
+ ┃ ┃ ┣ 📜useGithubUser.ts
+ ┃ ┃ ┗ 📜useTitle.ts
  ┃ ┣ 📂lib
  ┃ ┃ ┗ 📜utils.ts
  ┃ ┣ 📂pages
@@ -136,12 +144,14 @@
  ┃ ┃ ┣ 📜Error.tsx
  ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┗ 📜NotFound.tsx
- ┃ ┣ 📂types
- ┃ ┃ ┗ 📜GithubUser.ts
+ ┃ ┣ 📂utils
+ ┃ ┃ ┗ 📜formatDateRange.ts
  ┃ ┣ 📜App.tsx
  ┃ ┣ 📜index.css
  ┃ ┣ 📜main.tsx
  ┃ ┗ 📜queryClient.tsx
+ ┣ 📂types
+ ┃ ┗ 📜GithubUser.ts
  ┣ 📜.env.local
  ┣ 📜.gitignore
  ┣ 📜README.md
