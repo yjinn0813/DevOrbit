@@ -9,21 +9,20 @@ const ActiveRepoSkeleton = () => {
       <CardContent className="flex flex-col">
         <div className="flex items-baseline gap-2.5">
           <Skeleton className="h-9 w-64 max-[420px]:h-8 max-[420px]:w-48" />
-          <Skeleton className="size-4 rounded-full" />
         </div>
 
         <div className="mt-6 flex flex-col gap-2">
           {Array.from({ length: 5 }).map((_, index) => (
             <div
               key={index}
-              className="flex justify-between"
+              className="flex items-center justify-between gap-4"
             >
-              <div className="flex items-center gap-2">
-                <Skeleton className="h-6 w-5" />
-                <Skeleton className="h-6 w-32 max-[420px]:h-5 max-[420px]:w-24" />
+              <div className="flex min-w-0 flex-1 items-center gap-2">
+                <Skeleton className="h-6 w-5 shrink-0 max-[420px]:h-5" />
+                <Skeleton className="h-6 w-full max-w-56 max-[420px]:h-5 max-[420px]:w-40" />
               </div>
 
-              <Skeleton className="h-6 w-8 max-[420px]:h-5 max-[420px]:w-6" />
+              <Skeleton className="h-6 w-10 shrink-0 max-[420px]:h-5 max-[420px]:w-8" />
             </div>
           ))}
         </div>

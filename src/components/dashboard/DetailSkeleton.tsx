@@ -7,6 +7,7 @@ import RepoSkeleton from './skeleton/RepoSkeleton';
 import LanguageSkeleton from './skeleton/LanguageSkeleton';
 import TrendSkeleton from './skeleton/TrendSkeleton';
 import StreakSkeleton from './skeleton/StreakSkeleton';
+import ActiveRepoSkeleton from './skeleton/ActiveRepoSkeleton';
 
 const DetailSkeleton: React.FC = () => {
   return (
@@ -35,7 +36,7 @@ const DetailSkeleton: React.FC = () => {
           <TrendSkeleton />
         </div>
 
-        <RepoSkeleton />
+        <ActiveRepoSkeleton />
         <StreakSkeleton />
       </div>
     </div>
