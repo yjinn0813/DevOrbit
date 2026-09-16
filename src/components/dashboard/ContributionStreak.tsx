@@ -21,7 +21,7 @@ const ContributionStreak = ({ user }: ContributionProps) => {
 
   // ====================
   return (
-    <Card className="min-h-70 border border-secondary/50 bg-foreground dark:bg-card">
+    <Card className="min-h-68 border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
           <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
@@ -30,13 +30,13 @@ const ContributionStreak = ({ user }: ContributionProps) => {
           <InfoTooltip content='Contribution activity and streak statistics based on GitHub contribution data'/>
         </div>
         
-        <div className='mt-6 grid grid-cols-2 gap-7'>
+        <div className='mt-6 grid grid-cols-2 gap-6'>
           <div className="flex flex-col items-center gap-1.5">
             <div className="flex items-center gap-1.5 text-sm text-muted-foreground max-[420px]:text-xs">
               <Flame className="size-4" />
               <p>Current Streak</p>
             </div>
-            <div className='flex flex-col items-center justify-center gap-0.5'>
+            <div className='flex flex-col items-center justify-center gap-1'>
               <p className="text-2xl font-semibold text-primary max-[420px]:text-xl">
                 {user.contributionsCollection.currentStreak.count}
               </p>
@@ -53,9 +53,14 @@ const ContributionStreak = ({ user }: ContributionProps) => {
               <CalendarDays className="size-4" />
               <p>Active Days</p>
             </div>
-            <p className="text-2xl font-semibold text-primary max-[420px]:text-xl">
-              {user.contributionsCollection.activeDays}
-            </p>
+            <div className='flex flex-col items-center justify-center gap-1'>
+              <p className="text-2xl font-semibold text-primary max-[420px]:text-xl">
+                {user.contributionsCollection.activeDays}
+              </p>
+              <p className='text-xs font-light text-muted-foreground'>
+                {formatDate(createdDate)} ~ present
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col items-center gap-1.5">
@@ -63,7 +68,7 @@ const ContributionStreak = ({ user }: ContributionProps) => {
               <Trophy className="size-4" />
               <p>Longest Streak</p>
             </div>
-            <div className='flex flex-col items-center justify-center gap-0.5'>
+            <div className='flex flex-col items-center justify-center gap-1'>
               <p className="text-2xl font-semibold text-primary max-[420px]:text-xl">
                 {user.contributionsCollection.longestStreak.count}
               </p>
@@ -78,7 +83,7 @@ const ContributionStreak = ({ user }: ContributionProps) => {
               <GitCommit className="size-4" />
               <p>Total Contributions</p>
             </div>
-            <div className='flex flex-col items-center justify-center gap-0.5'>
+            <div className='flex flex-col items-center justify-center gap-1'>
               <div className="text-2xl font-semibold text-secondary max-[420px]:text-xl">
                 {user.contributionsCollection.totalContributions}
               </div>

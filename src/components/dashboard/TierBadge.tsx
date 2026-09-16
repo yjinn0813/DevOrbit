@@ -56,7 +56,7 @@ const TierBadge = ({ user }: TierProps) => {
           <InfoTooltip content='Tier is determined based on the GitHub activity and contribution metrics'/>
         </div>
 
-        <div className="mt-6 flex flex-row items-center justify-evenly gap-4">
+        <div className="mt-5 flex flex-row items-center justify-evenly gap-4">
           <GemIcon color={tier.color} />
           <div className='flex flex-col items-center gap-1'>
             <div className="text-lg text-muted-foreground">
