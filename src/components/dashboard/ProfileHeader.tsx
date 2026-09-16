@@ -1,7 +1,7 @@
 /* Detail page - profile card */
 
 import { Card, CardContent } from '../ui/card';
-import type { GithubUser } from '../../types/GithubUser';
+import type { GithubUser } from '../../../types/GithubUser';
 
 interface ProfileHeaderProps {
   user: GithubUser;

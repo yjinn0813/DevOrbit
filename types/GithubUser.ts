@@ -30,10 +30,10 @@ export interface GithubUser {
     totalIssueContributions: number;
     totalPullRequestContributions: number
     totalRepositoriesWithContributedCommits: number;
+    contributionYears: number[];
 
     contributionCalendar: {
       totalContributions: number;
-
       weeks: {
         contributionDays: {
           date: string;

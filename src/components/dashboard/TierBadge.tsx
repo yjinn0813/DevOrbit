@@ -1,7 +1,7 @@
 /* Profile Tier badge */
 
 import { Card, CardContent} from '../ui/card';
-import type { GithubUser } from '../../types/GithubUser';
+import type { GithubUser } from '../../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
 import { GemIcon } from '../dashboard/GemIcon';
 import { calculateTierScore, TIER_CONFIG } from '../../constants/TierConfig';

@@ -5,7 +5,7 @@ import { Bar } from 'react-chartjs-2';
 import { Card, CardContent } from '../ui/card'; 
 import InfoTooltip from '../common/InfoTooltip';
 import EmptyState from '../common/EmptyState';
-import type { GithubUser } from '../../types/GithubUser';
+import type { GithubUser } from '../../../types/GithubUser';
 import { languageColors } from '../../constants/LangColors';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);

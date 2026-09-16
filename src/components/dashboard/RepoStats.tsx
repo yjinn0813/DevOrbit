@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '../ui/card';
 import { FolderGit2, Star, GitFork, GitBranch } from 'lucide-react';
-import type { GithubUser } from '../../types/GithubUser';
+import type { GithubUser } from '../../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
 
 interface RepoProps {
