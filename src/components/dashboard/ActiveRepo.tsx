@@ -3,11 +3,13 @@
 import { Card, CardContent } from '../ui/card';
 import type { GithubUser } from '../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
+import EmptyState from '../common/EmptyState';
 
 interface ActiveRepoProps {
   user: GithubUser;
 }
 
+// ====================
 const ActiveRepo = ({ user }: ActiveRepoProps) => {
   const commitRepos =
     user.contributionsCollection.commitContributionsByRepository;
@@ -61,29 +63,35 @@ const ActiveRepo = ({ user }: ActiveRepoProps) => {
         </div>
         
         <div className="mt-6 flex flex-col gap-2">
-          {topRepos.map((repo, index) => (
-            <div
-              key={repo.name}
-              className="flex justify-between"
-            >
-              <div className="flex items-center gap-2">
-                <span className="w-5 text-center text-lg text-muted-foreground font-semibold">
-                  {index === 0 ? "🥇"
-                    : index === 1 ? "🥈"
-                    : index === 2 ? "🥉"
-                    : `${index + 1}`}
-                </span>
-
-                <span className="text-lg text-muted-foreground max-[420px]:text-sm">
-                  {repo.name}
-                </span>
-              </div>
-
-              <span className="text-lg font-semibold text-secondary max-[420px]:text-sm">
-                {repo.activity}
-              </span>
-            </div>
-          ))}
+          {topRepos.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <>
+              {topRepos.map((repo, index) => (
+                <div
+                  key={repo.name}
+                  className="flex justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-5 text-center text-lg text-muted-foreground font-semibold">
+                      {index === 0 ? "🥇"
+                        : index === 1 ? "🥈"
+                        : index === 2 ? "🥉"
+                        : `${index + 1}`}
+                    </span>
+    
+                    <span className="text-lg text-muted-foreground max-[420px]:text-sm">
+                      {repo.name}
+                    </span>
+                  </div>
+    
+                  <span className="text-lg font-semibold text-secondary max-[420px]:text-sm">
+                    {repo.activity}
+                  </span>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </CardContent>
     </Card>
