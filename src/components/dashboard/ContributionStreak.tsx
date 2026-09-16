@@ -27,8 +27,7 @@ const ContributionStreak = ({ user }: ContributionProps) => {
           <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
             Contribution Streak
           </div>
-          <InfoTooltip content='Longest consecutive contribution streak based on GitHub contribution data'/>
-          {/* todo: 툴팁 설명글 수정 */}
+          <InfoTooltip content='Contribution activity and streak statistics based on GitHub contribution data'/>
         </div>
         
         <div className='mt-6 grid grid-cols-2 gap-7'>
