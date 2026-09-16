@@ -4,25 +4,14 @@ import { BarElement, CategoryScale, Chart as ChartJS, LinearScale, Tooltip } fro
 import { Bar } from 'react-chartjs-2';
 import { Card, CardContent } from '../ui/card'; 
 import InfoTooltip from '../common/InfoTooltip';
+import EmptyState from '../common/EmptyState';
+import type { GithubUser } from '../../../types/GithubUser';
 import { languageColors } from '../../constants/LangColors';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 interface LanguageChartProps {
-  user: {
-    repositories: {
-      nodes: {
-        languages: {
-          edges: {
-            size: number;
-            node: {
-              name: string;
-            };
-          }[];
-        };
-      }[];
-    };
-  };
+  user: GithubUser;
 }
 
 // ====================
@@ -97,33 +86,43 @@ const LanguageChart = ({ user }: LanguageChartProps) => {
           <InfoTooltip content='Language distribution across the user owned, non-fork repositories, based on code size' />
         </div>
 
-        <div className="mt-6 flex flex-row items-center justify-center gap-10">
-          {/* Chart */}
-          <div className='h-80 w-full md:w-[55%]'>
-            <Bar data={chartData} options={options} />
-          </div>
-          
-          {/* Legend */}
-          <div className="flex flex-col gap-3">
-            {languages.map((language) => (
-              <div key={language.name} className="flex items-center gap-2">
-                <div
-                  className="size-3 rounded-full"
-                  style={{
-                    backgroundColor: languageColors[language.name] ?? '#71717A',
-                  }}
-                />
-
-                <span className="text-muted-foreground">
-                  {language.name}
-                </span>
-
-                <span className="text-muted-foreground">
-                  {language.percentage.toFixed(2)}%
-                </span>
+        <div className="mt-6 flex flex-col items-center justify-center gap-6 md:flex-row md:gap-10">
+          {languages.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <>
+              {/* Chart */}
+              <div className='h-64 w-full md:h-80 md:w-[55%]'>
+                <Bar data={chartData} options={options} />
               </div>
-            ))}
-          </div>
+
+              {/* Legend */}
+              <div className="
+                grid grid-cols-1 gap-y-3
+                min-[481px]:grid-cols-2 min-[481px]:gap-x-12
+                md:grid-cols-1
+              ">
+                {languages.map((language) => (
+                  <div key={language.name} className="flex items-center gap-2">
+                    <div
+                      className="size-3 rounded-full"
+                      style={{
+                        backgroundColor: languageColors[language.name] ?? '#71717A',
+                      }}
+                    />
+
+                    <span className="text-muted-foreground">
+                      {language.name}
+                    </span>
+
+                    <span className="text-muted-foreground">
+                      {language.percentage.toFixed(2)}%
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </CardContent>
     </Card>

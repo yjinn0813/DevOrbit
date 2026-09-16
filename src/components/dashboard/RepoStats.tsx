@@ -2,21 +2,11 @@
 
 import { Card, CardContent } from '../ui/card';
 import { FolderGit2, Star, GitFork, GitBranch } from 'lucide-react';
+import type { GithubUser } from '../../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
 
 interface RepoProps {
-  user: {
-    contributionsCollection: {
-      totalRepositoriesWithContributedCommits: number;
-    };
-    repositories: {
-      totalCount: number;
-      nodes: {
-        stargazerCount: number;
-        forkCount: number;
-      }[];
-    }
-  }
+  user: GithubUser;
 }
 
 // ====================
@@ -36,7 +26,7 @@ const RepoStats = ({ user }: RepoProps) => {
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
           <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
-            Repository Overview
+            Repositories
           </div>
           <InfoTooltip content='Statistics based on repositories currently owned by the user (including stars, forks, and contributions to other repositories)'/>
         </div>

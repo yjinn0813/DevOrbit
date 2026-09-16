@@ -2,19 +2,11 @@
 
 import { Card, CardContent } from '../ui/card';
 import { GitCommit, GitPullRequest, CircleDot, Activity } from 'lucide-react';
+import type { GithubUser } from '../../../types/GithubUser';
 import InfoTooltip from '../common/InfoTooltip';
 
 interface ActivityProps {
-  user: {
-    contributionsCollection: {
-      totalCommitContributions: number;
-      totalPullRequestContributions: number;
-      totalIssueContributions: number;
-      contributionCalendar: {
-        totalContributions: number;
-      };
-    };
-  };
+  user: GithubUser;
 }
 
 // ====================
