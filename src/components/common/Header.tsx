@@ -15,7 +15,7 @@ const Header = () => {
     <header id='header' 
       className='border-b-2 border-secondary bg-surface-light dark:bg-background'
     >
-      <div className='flex flex-row items-center justify-between px-3 py-4'>
+      <div className='w-full mx-auto max-w-360 flex flex-row items-center justify-between px-3 py-4'>
         <Link to="/" className='flex flex-row gap-2 items-center'>
           <img src="/favicon/DevOrbit.svg" alt="DevOrbit" height="34" width="34" />
           <Logo className="text-xl" />

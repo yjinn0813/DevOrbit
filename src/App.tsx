@@ -10,9 +10,9 @@ import './index.css';
 export default function App() {
   return (
     <TooltipProvider>
-      <div id='container' className='flex flex-col min-h-screen'>
+      <div id='container' className='flex flex-col min-h-screen bg-surface-light dark:bg-background'>
         <Header />
-        <main id='wrap' className='flex flex-1 flex-col bg-surface-light dark:bg-background'>
+        <main id='wrap' className='flex flex-1 flex-col mx-auto w-full max-w-360'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/detail/:username" element={<Detail />} />
