@@ -9,6 +9,7 @@ import TrendSkeleton from './skeleton/TrendSkeleton';
 import YearlySkeleton from './skeleton/YearlyTrendSkeleton';
 import StreakSkeleton from './skeleton/StreakSkeleton';
 import ActiveRepoSkeleton from './skeleton/ActiveRepoSkeleton';
+import ReposRecordSkeleton from './skeleton/RepoRecordSkeleton';
 
 const DetailSkeleton: React.FC = () => {
   return (
@@ -50,6 +51,10 @@ const DetailSkeleton: React.FC = () => {
         <div className="md:col-span-3">
           <StreakSkeleton />
         </div>
+      </div>
+
+      <div className="md:col-span-2">
+        <ReposRecordSkeleton />
       </div>
     </div>
   );
