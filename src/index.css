@@ -42,6 +42,7 @@
   --destructive: #ef4444;
   --ring: #3b82f6;
 
+  --heatmap-low: #f1f1f1;
   --chart-1: #3b82f6;
   --chart-2: #06b6d4;
   --chart-3: #6366f1;
@@ -94,6 +95,7 @@
 
   --color-ring: var(--ring);
 
+  --color-heatmap-low: var(--heatmap-low);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -146,6 +148,7 @@
   --destructive: #ef4444;
   --ring: #3b82f6;
 
+  --heatmap-low: #09090b;
   --chart-1: #3b82f6;
   --chart-2: #06b6d4;
   --chart-3: #6366f1;
