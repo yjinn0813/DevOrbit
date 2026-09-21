@@ -1,8 +1,17 @@
 # DevOrbit 📡
 
-## 1. 프로젝트 소개 & 기획 의도
-- GitHub 활동과 기술 스택을 시각적으로 보여주는 대시보드
-- shadcn/ui, Chart.js, pnpm 학습
+<br>
+<p align=center><img src="https://github.com/yjinn0813/DevOrbit/blob/main/public/images/LOGO.png" width="300"></p>
+<br>
+DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 활동 흐름과 Repository 정보를 시각적으로 확인할 수 있도록 구성한 개발자 대시보드입니다. GitHub GraphQL API를 기반으로 Contribution, Repository, Language 등의 데이터를 조회하고, 이를 차트와 통계 카드로 시각화합니다.
+
+<br>
+
+## 1. 프로젝트 목적
+- GitHub GraphQL API를 활용한 데이터 조회 및 가공 경험
+- shadcn/ui와 Chart.js를 활용한 대시보드 UI 구성 및 데이터 시각화 학습
+- pnpm을 활용한 패키지 관리 및 프로젝트 의존성 관리 학습
+- React/TypeScript 기반의 컴포넌트 설계 및 비동기 데이터 처리 경험
 
 <br>
 
@@ -10,10 +19,11 @@
 - **기간**: 2026.09 ~
 - **개발 단계**:
   - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 설계
-  - Phase 2. GitHub API 연동
-  - Phase 3. 데이터 가공 및 차트 구현
-  - Phase 4. UI/UX 개선 및 반응형 대응
-  - Phase 5. 성능 최적화 및 배포
+  - Phase 2. GitHub API 연동 & 로컬 API 서버 구축 (Express)
+  - Phase 3. 데이터 가공 & 대시보드 기능 구현 (Shadcn/ui)
+  - Phase 4. API 구조 개선 & 데이터 확장
+  - Phase 5. UI/UX 개선 & 반응형 대응
+  - Phase 6. 성능 최적화 & 배포
 
 <br>
 
@@ -21,7 +31,8 @@
 ### Home
 * GitHub GraphQL API를 활용한 username 검색
 * 검색 결과에 따른 Detail 페이지 이동
-* 잘못된 username 입력 및 GitHub 사용자 조회 오류 처리
+* 잘못된 username 조회 시 Not Found 페이지 제공
+* GitHub API 또는 네트워크 오류 발생 시 Error 페이지 제공
 
 ### Detail
 * GitHub 사용자 프로필 및 기본 정보 제공
@@ -35,13 +46,43 @@
 * 반응형 레이아웃 지원
 
 ### Not Found
-* 존재하지 않는 경로 접근 시 404 페이지 제공
-* 잘못된 URL 접근에 대한 예외 처리
+* 존재하지 않는 경로 또는 GitHub 사용자를 조회한 경우 404 페이지 제공
+
+### Error
+* GitHub API 또는 네트워크 오류 발생 시 에러 화면 제공
+* 재시도 기능 제공
 
 <br>
 
-## 4. 사용 기술 스택
+## 4. 데이터 집계 기준
+DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Repository, Tier 등 영역으로 구분하고, 각 항목의 목적에 맞는 기간과 집계 기준을 적용하여 대시보드에 표시합니다.
 
+### Tier
+* 최근 1년간 Contribution 활동과 전체 Repository 활동을 기반으로 사용자 활동 점수를 계산
+* 계산된 점수 구간에 따라 Iron부터 Diamond까지 9단계 Tier를 부여
+
+### Contribution
+| 항목 | 기간 | 집계 기준 |
+| ------ | ------ | ------ |
+| `Activity Overview` | 최근 1년 | Commit, Pull Request, Issue 및 전체 Contribution 수를 각각 집계 |
+| `Monthly Trend` | 최근 1년 | 일별 Contribution 데이터를 월 단위로 그룹화하여 월별 Contribution 수를 합산 |
+| `Yearly Trend` | 전체 기간 | 전체 Contribution 기록을 연도별로 그룹화하여 Contribution 수를 합산 |
+| `Current Streak` | 최근 활동 기준 | 일별 Contribution 여부를 기준으로 현재 연속 활동 기간을 계산 |
+| `Longest Streak` | 전체 기간 | 전체 Contribution 기록에서 연속으로 Contribution이 발생한 가장 긴 기간을 계산 |
+| `Total Contributions` | 전체 기간 | 전체 Contribution 기록의 Contribution 수를 합산 |
+
+### Repository
+| 항목 | 기간 | 대상 | 집계 기준 |
+| ------ | ----- | ----- | ------- |
+| `Repositories` | 전체 | 사용자 소유 Repository | Repository 수, Star 수, Fork 수를 집계하고 Contribution을 통해 활동한 Repository 수를 별도로 집계 |
+| `Top Languages` | 전체 | 사용자 소유의 비 Fork Repository | Repository별 언어 사용량을 합산하여 전체 언어 사용량 대비 비율을 계산하고 상위 언어를 표시 |
+| `Active Repository` | 최근 1년 | 활동 기록이 있는 Repository | Repository별 활동량을 계산하고 상위 Repository를 표시       |
+| `Repositories Record` | 최근 1년 | 활동량이 높은 Repository | Repository별 활동을 집계하여 Contribution Heatmap 형태로 시각화 |
+
+<br>
+<br>
+
+## 5. 사용 기술
 ### Frontend
 | 기술/패키지 | 사용 목적 |
 | --- | --- |
@@ -74,7 +115,7 @@
 
 <br>
 
-## 5. 디렉토리 구조
+## 6. 디렉토리 구조
 ```bash
 📦DevOrbit
  ┣ 📂public
@@ -82,9 +123,12 @@
  ┃ ┃ ┗ 📜DevOrbit.svg
  ┃ ┣ 📂fonts
  ┃ ┃ ┗ 📜PretendardStdVariable.woff2
+ ┃ ┣ 📂images
+ ┃ ┃ ┗ 📜LOGO.png
  ┣ 📂server
  ┃ ┣ 📂utils
- ┃ ┃ ┗ 📜contribution.ts
+ ┃ ┃ ┣ 📜contribution.ts
+ ┃ ┃ ┗ 📜repository.ts
  ┃ ┣ 📜contributionHistory.ts
  ┃ ┣ 📜githubUser.ts
  ┃ ┗ 📜index.ts
@@ -100,13 +144,15 @@
  ┃ ┃ ┃ ┣ 📜InfoTooltip.tsx
  ┃ ┃ ┃ ┣ 📜Logo.tsx
  ┃ ┃ ┃ ┣ 📜SearchBar.tsx
- ┃ ┃ ┃ ┗ 📜Starfield.tsx
+ ┃ ┃ ┃ ┣ 📜Starfield.tsx
+ ┃ ┃ ┃ ┗ 📜TopBtn.tsx
  ┃ ┃ ┣ 📂dashboard
  ┃ ┃ ┃ ┣ 📂skeleton
  ┃ ┃ ┃ ┃ ┣ 📜ActiveRepoSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜ActivitySkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜LanguageSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜ProfileSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜RepoRecordSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜RepoSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜StreakSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜TierSkeleton.tsx
@@ -121,14 +167,18 @@
  ┃ ┃ ┃ ┣ 📜LanguageChart.tsx
  ┃ ┃ ┃ ┣ 📜ProfileHeader.tsx
  ┃ ┃ ┃ ┣ 📜RepoStats.tsx
+ ┃ ┃ ┃ ┣ 📜ReposRecord.tsx
  ┃ ┃ ┃ ┣ 📜TierBadge.tsx
  ┃ ┃ ┃ ┗ 📜YearlyTrend.tsx
  ┃ ┃ ┗ 📂ui
+ ┃ ┃ ┃ ┣ 📂heatmap
+ ┃ ┃ ┃ ┃ ┗ 📜calendar-heatmap.tsx
  ┃ ┃ ┃ ┣ 📜button.tsx
  ┃ ┃ ┃ ┣ 📜card.tsx
  ┃ ┃ ┃ ┣ 📜input-group.tsx
  ┃ ┃ ┃ ┣ 📜input.tsx
  ┃ ┃ ┃ ┣ 📜skeleton.tsx
+ ┃ ┃ ┃ ┣ 📜tabs.tsx
  ┃ ┃ ┃ ┣ 📜textarea.tsx
  ┃ ┃ ┃ ┗ 📜tooltip.tsx
  ┃ ┣ 📂constants
@@ -151,7 +201,8 @@
  ┃ ┣ 📜main.tsx
  ┃ ┗ 📜queryClient.tsx
  ┣ 📂types
- ┃ ┗ 📜GithubUser.ts
+ ┃ ┣ 📜GithubUser.ts
+ ┃ ┗ 📜RepositoryRecord.ts
  ┣ 📜.env.local
  ┣ 📜.gitignore
  ┣ 📜README.md

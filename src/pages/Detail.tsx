@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useGithubUser } from "../hooks/useGithubUser";
 import useTitle from '../hooks/useTitle';
+import TopBtn from '../components/common/TopBtn';
 import ProfileHeader from '../components/dashboard/ProfileHeader';
 import ActivityStats from '../components/dashboard/ActivityStats';
 import RepoStats from '../components/dashboard/RepoStats';
@@ -12,6 +13,7 @@ import ActiveRepo from '../components/dashboard/ActiveRepo';
 import ContributionStreak from '../components/dashboard/ContributionStreak';
 import TierBadge from '../components/dashboard/TierBadge';
 import DetailSkeleton from '../components/dashboard/DetailSkeleton';
+import ReposRecord from '../components/dashboard/ReposRecord';
 import Error from './Error';
 import NotFound from './NotFound';
 
@@ -76,6 +78,12 @@ const Detail = () => {
           <ContributionStreak user={user} />
         </div>
       </div>
+
+      <div className="md:col-span-2">
+        <ReposRecord repos={user.repositoryRecords}/>
+      </div>
+      
+      <TopBtn />
     </div>
   );
 };
