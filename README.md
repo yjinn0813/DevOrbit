@@ -144,7 +144,8 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Re
  ┃ ┃ ┃ ┣ 📜InfoTooltip.tsx
  ┃ ┃ ┃ ┣ 📜Logo.tsx
  ┃ ┃ ┃ ┣ 📜SearchBar.tsx
- ┃ ┃ ┃ ┗ 📜Starfield.tsx
+ ┃ ┃ ┃ ┣ 📜Starfield.tsx
+ ┃ ┃ ┃ ┗ 📜TopBtn.tsx
  ┃ ┃ ┣ 📂dashboard
  ┃ ┃ ┃ ┣ 📂skeleton
  ┃ ┃ ┃ ┃ ┣ 📜ActiveRepoSkeleton.tsx

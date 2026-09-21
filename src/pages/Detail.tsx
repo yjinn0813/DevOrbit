@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useGithubUser } from "../hooks/useGithubUser";
 import useTitle from '../hooks/useTitle';
+import TopBtn from '../components/common/TopBtn';
 import ProfileHeader from '../components/dashboard/ProfileHeader';
 import ActivityStats from '../components/dashboard/ActivityStats';
 import RepoStats from '../components/dashboard/RepoStats';
@@ -81,6 +82,8 @@ const Detail = () => {
       <div className="md:col-span-2">
         <ReposRecord repos={user.repositoryRecords}/>
       </div>
+      
+      <TopBtn />
     </div>
   );
 };
