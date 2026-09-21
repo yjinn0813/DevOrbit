@@ -5,7 +5,9 @@ import dotenv from "dotenv";
 import { fetchGithubUser } from "./githubUser";
 import { fetchContributionHistory } from "./contributionHistory";
 import { calculateContributionStats } from "./utils/contribution";
+import { calculateRepositoryContributions, getTopRepositories } from "./utils/repository";
 
+// ====================
 dotenv.config({
   path: ".env.local",
 });
@@ -46,6 +48,7 @@ app.get("/api/github", async (req, res) => {
 
     const { createdAt, contributionsCollection } = data;
 
+    // 전체 Contribution History 조회 및 통계 데이터 가공
     const contributionHistory =
       await fetchContributionHistory(
         username.trim(),
@@ -56,6 +59,16 @@ app.get("/api/github", async (req, res) => {
 
     const contributionStats = calculateContributionStats(contributionHistory);
 
+    // Repository별 Contribution 데이터 가공 및 상위 3개 Repository 추출
+    const repositoryContributions =
+      calculateRepositoryContributions(
+        contributionsCollection.commitContributionsByRepository,
+        contributionsCollection.pullRequestContributionsByRepository,
+      );
+
+    const repositoryRecords = getTopRepositories(repositoryContributions, 3);
+
+    // 가공된 데이터 조합 및 응답 생성
     const result = {
       ...data,
 
@@ -64,6 +77,7 @@ app.get("/api/github", async (req, res) => {
 
         user: {
           ...data,
+          repositoryRecords,
           contributionsCollection: {
             ...contributionsCollection,
             ...contributionStats,
