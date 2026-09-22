@@ -1,7 +1,7 @@
 # DevOrbit 📡
 
 <br>
-<p align=center><img src="https://github.com/yjinn0813/DevOrbit/blob/main/public/images/LOGO.png" width="300"></p>
+<p align=center><img src="https://github.com/yjinn0813/DevOrbit/blob/main/public/images/LOGO.png" width="600"></p>
 <br>
 DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 활동 흐름과 Repository 정보를 시각적으로 확인할 수 있도록 구성한 개발자 대시보드입니다. GitHub GraphQL API를 기반으로 Contribution, Repository, Language 등의 데이터를 조회하고, 이를 차트와 통계 카드로 시각화합니다.
 
@@ -124,7 +124,6 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Re
  ┃ ┣ 📂fonts
  ┃ ┃ ┗ 📜PretendardStdVariable.woff2
  ┃ ┣ 📂images
- ┃ ┃ ┗ 📜LOGO.png
  ┣ 📂server
  ┃ ┣ 📂utils
  ┃ ┃ ┣ 📜contribution.ts
