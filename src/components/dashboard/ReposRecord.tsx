@@ -7,6 +7,7 @@ import { CalendarHeatmap, CalendarHeatmapBody,
   CalendarHeatmapBlock, CalendarHeatmapFooter, CalendarHeatmapLegend, } from '../ui/heatmap/calendar-heatmap';
 import type { RepositoryRecord } from '../../../types/RepositoryRecord';
 import InfoTooltip from '../common/InfoTooltip';
+import EmptyState from '../common/EmptyState';
 
 interface ReposRecordProps {
   repos: RepositoryRecord[]
@@ -70,90 +71,94 @@ const ReposRecord = ({ repos }: ReposRecordProps) => {
         </div>
 
         <div className="mt-6">
-          {/* tabs */}
-          <Tabs defaultValue={repos[0].repository}>
-            <TabsList className="h-auto justify-start gap-1 rounded-lg p-2">
-              {repos.map(({ repository }) => (
-                <TabsTrigger
-                  key={repository}
-                  value={repository}
-                  className='
-                    flex-1 px-3 py-2.5
-                    transition-all
-                    hover:bg-accent
-                  '
-                >
-                  {repository}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {/* heatmap */}
-            {repos.map(({ repository, contributions }) => {
-              const filledContributions = fillMissingDates(contributions);
-
-              return (
-                <TabsContent
-                  key={repository}
-                  value={repository}
-                >
-                  <CalendarHeatmap 
-                    data={filledContributions.map(
-                      ({ date, count }) => ({
-                        date,
-                        value: count,
-                      }),
-                    )}
-                    weekStart={1}
-                    continuousMonths
+          {repos.length === 0 ? (
+            <EmptyState />
+          ) : (           
+            <Tabs defaultValue={repos[0].repository}>
+              {/* tabs */}
+              <TabsList className="h-auto justify-start gap-1 rounded-lg p-2">
+                {repos.map(({ repository }) => (
+                  <TabsTrigger
+                    key={repository}
+                    value={repository}
+                    className='
+                      flex-1 px-3 py-2.5
+                      transition-all
+                      hover:bg-accent
+                    '
                   >
-                    <CalendarHeatmapBody hideYearLabels
-                      labelClassName="text-muted-foreground"
-                    >
-                      {({ activity, dayIndex, weekIndex }) => (
-                        <CalendarHeatmapBlock 
-                          activity={activity}
-                          dayIndex={dayIndex}
-                          weekIndex={weekIndex}
-                          onMouseEnter={(event) => {
-                            const rect = event.currentTarget.getBoundingClientRect(); 
-                            setTooltip({ 
-                              date: activity.date, 
-                              count: activity.value, 
-                              x: rect.left + rect.width / 2,
-                              y: rect.top, 
-                            }); 
-                          }} 
-                          onMouseLeave={() => { setTooltip(null); }}
-                        />
-                      )}
-                    </CalendarHeatmapBody>
+                    {repository}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
 
-                    <CalendarHeatmapFooter>
-                      <CalendarHeatmapLegend />
-                    </CalendarHeatmapFooter>
-                  </CalendarHeatmap>
-                  
-                  {/* heatmap tooltip */}
-                  {tooltip && (
-                    <div className='
-                      pointer-events-none fixed rounded-md border border-border bg-popover
-                      px-2.5 py-1.5 text-xs text-popover-foreground shadow-md
-                      z-50 -translate-x-1/2 -translate-y-full
-                      '
-                      style={{
-                        left: tooltip.x,
-                        top: tooltip.y - 8
-                      }}
+              {/* heatmap */}
+              {repos.map(({ repository, contributions }) => {
+                const filledContributions = fillMissingDates(contributions);
+
+                return (
+                  <TabsContent
+                    key={repository}
+                    value={repository}
+                  >
+                    <CalendarHeatmap 
+                      data={filledContributions.map(
+                        ({ date, count }) => ({
+                          date,
+                          value: count,
+                        }),
+                      )}
+                      weekStart={1}
+                      continuousMonths
                     >
-                      <div className='font-medium'>{tooltip.date}</div>
-                      <div>{tooltip.count} contributions</div>
-                    </div>
-                  )}
-                </TabsContent>
-              )
-            })}
-          </Tabs>
+                      <CalendarHeatmapBody hideYearLabels
+                        labelClassName="text-muted-foreground"
+                      >
+                        {({ activity, dayIndex, weekIndex }) => (
+                          <CalendarHeatmapBlock 
+                            activity={activity}
+                            dayIndex={dayIndex}
+                            weekIndex={weekIndex}
+                            onMouseEnter={(event) => {
+                              const rect = event.currentTarget.getBoundingClientRect(); 
+                              setTooltip({ 
+                                date: activity.date, 
+                                count: activity.value, 
+                                x: rect.left + rect.width / 2,
+                                y: rect.top, 
+                              }); 
+                            }} 
+                            onMouseLeave={() => { setTooltip(null); }}
+                          />
+                        )}
+                      </CalendarHeatmapBody>
+
+                      <CalendarHeatmapFooter>
+                        <CalendarHeatmapLegend />
+                      </CalendarHeatmapFooter>
+                    </CalendarHeatmap>
+                    
+                    {/* heatmap tooltip */}
+                    {tooltip && (
+                      <div className='
+                        pointer-events-none fixed rounded-md border border-border bg-popover
+                        px-2.5 py-1.5 text-xs text-popover-foreground shadow-md
+                        z-50 -translate-x-1/2 -translate-y-full
+                        '
+                        style={{
+                          left: tooltip.x,
+                          top: tooltip.y - 8
+                        }}
+                      >
+                        <div className='font-medium'>{tooltip.date}</div>
+                        <div>{tooltip.count} contributions</div>
+                      </div>
+                    )}
+                  </TabsContent>
+                )
+              })}
+            </Tabs>
+          )}
         </div>
       </CardContent>
     </Card>
