@@ -15,8 +15,8 @@ export const TIER_CONFIG: TierInfo[] = [
   { name: "Gold", minScore: 30, maxScore: 39, color: "#ffd700" },
   { name: "Platinum", minScore: 40, maxScore: 49, color: "#e5e4e2" },
   { name: "Emerald", minScore: 50, maxScore: 59, color: "#6EE7A0" },
-  { name: "Sapphire", minScore: 60, maxScore: 74, color: "#4F83D1" },
-  { name: "Ruby", minScore: 75, maxScore: 89, color: "#E85D8A" },
+  { name: "Sapphire", minScore: 60, maxScore: 74, color: "#1683FF" },
+  { name: "Ruby", minScore: 75, maxScore: 89, color: "#EF3F5F" },
   { name: "Diamond", minScore: 90, maxScore: 100, color: "#b9f2ff" },
 ] as const;
 
