@@ -32,6 +32,7 @@ export const fetchGithubUser = async (
           first: 100
           ownerAffiliations: OWNER
           isFork: false
+          privacy: PUBLIC
         ) {
           totalCount
 
