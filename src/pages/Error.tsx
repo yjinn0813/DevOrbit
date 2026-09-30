@@ -1,9 +1,12 @@
 /* API, 서버 에러 등 */
 
 import { Link } from 'react-router-dom';
+import useTitle from '../hooks/useTitle';
 import Starfield from '../components/common/Starfield';
 
 const Error = () => {
+  useTitle('Error');
+
   return (
     <div className="relative my-auto flex flex-col items-center justify-center text-center">
       <Starfield />
