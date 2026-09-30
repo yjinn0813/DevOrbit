@@ -1,10 +1,12 @@
 # DevOrbit 📡
 
 <br>
-<p align=center><img src="https://github.com/yjinn0813/DevOrbit/blob/main/public/images/LOGO.png" width="600"></p>
+<p align=center><img src="https://github.com/yjinn0813/DevOrbit/blob/main/public/images/LOGO.png" width="500"></p>
 <br>
 DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 활동 흐름과 Repository 정보를 시각적으로 확인할 수 있도록 구성한 개발자 대시보드입니다. GitHub GraphQL API를 기반으로 Contribution, Repository, Language 등의 데이터를 조회하고, 이를 차트와 통계 카드로 시각화합니다.
 
+<br>
+<br>
 <br>
 
 ## 1. 프로젝트 목적
@@ -55,31 +57,14 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 <br>
 
 ## 4. 데이터 집계 기준
-DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Repository, Tier 등 영역으로 구분하고, 각 항목의 목적에 맞는 기간과 집계 기준을 적용하여 대시보드에 표시합니다.
+DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 목적에 맞는 기간과 집계 기준으로 가공하여 대시보드에 표시합니다.
 
-### Tier
-* 최근 1년간 Contribution 활동과 전체 Repository 활동을 기반으로 사용자 활동 점수를 계산
-* 계산된 점수 구간에 따라 Iron부터 Diamond까지 9단계 Tier를 부여
+자세한 데이터 흐름과 집계 및 계산 방식은 [Wiki](https://github.com/yjinn0813/DevOrbit/wiki) 에서 확인할 수 있습니다.
 
-### Contribution
-| 항목 | 기간 | 집계 기준 |
-| ------ | ------ | ------ |
-| `Activity Overview` | 최근 1년 | Commit, Pull Request, Issue 및 전체 Contribution 수를 각각 집계 |
-| `Monthly Trend` | 최근 1년 | 일별 Contribution 데이터를 월 단위로 그룹화하여 월별 Contribution 수를 합산 |
-| `Yearly Trend` | 전체 기간 | 전체 Contribution 기록을 연도별로 그룹화하여 Contribution 수를 합산 |
-| `Current Streak` | 최근 활동 기준 | 일별 Contribution 여부를 기준으로 현재 연속 활동 기간을 계산 |
-| `Longest Streak` | 전체 기간 | 전체 Contribution 기록에서 연속으로 Contribution이 발생한 가장 긴 기간을 계산 |
-| `Total Contributions` | 전체 기간 | 전체 Contribution 기록의 Contribution 수를 합산 |
+- [Contribution Statistics](https://github.com/yjinn0813/DevOrbit/wiki/Contribution-Statistics)
+- [Repository Activity Record](https://github.com/yjinn0813/DevOrbit/wiki/Repository-Activity-Record)
+- [Tier Level & Score Calculation](https://github.com/yjinn0813/DevOrbit/wiki/Tier-Badge-Levels-and-Score-Calculation)
 
-### Repository
-| 항목 | 기간 | 대상 | 집계 기준 |
-| ------ | ----- | ----- | ------- |
-| `Repositories` | 전체 | 사용자 소유 Repository | Repository 수, Star 수, Fork 수를 집계하고 Contribution을 통해 활동한 Repository 수를 별도로 집계 |
-| `Top Languages` | 전체 | 사용자 소유의 비 Fork Repository | Repository별 언어 사용량을 합산하여 전체 언어 사용량 대비 비율을 계산하고 상위 언어를 표시 |
-| `Active Repository` | 최근 1년 | 활동 기록이 있는 Repository | Repository별 활동량을 계산하고 상위 Repository를 표시       |
-| `Repositories Record` | 최근 1년 | 활동량이 높은 Repository | Repository별 활동을 집계하여 Contribution Heatmap 형태로 시각화 |
-
-<br>
 <br>
 
 ## 5. 사용 기술
@@ -99,6 +84,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Re
 | --- | --- |
 | ![tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=TailwindCSS&logoColor=white) | 유틸리티 기반 및 반응형 UI 스타일링 |
 | ![shadcn/ui](https://img.shields.io/badge/Shadcn/ui-000000?style=flat-square&logo=shadcnui&logoColor=white) | 재사용 가능한 UI 컴포넌트 구성 |
+| `Sonner` | 사용자 입력 및 상태에 대한 Toast 알림 UI 구현 |
 | `lucide-react` | 다양한 인터페이스 아이콘을 React 컴포넌트로 사용 |
 
 ### Tooling & Deployment
@@ -111,6 +97,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Re
 | ![express](https://img.shields.io/badge/express-000000?style=flat-square&logo=express&logoColor=white) | 로컬 API 서버 및 GitHub GraphQL 요청 처리 |
 | ![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=white) | 효율적인 의존성 관리와 빠른 패키지 설치 |
 | ![eslint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white) | 코드 품질 및 규칙 일관성 유지 |
+| ![GitHub Actions](https://img.shields.io/badge/Github_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white) | TypeScript 검사 및 ESLint 자동 실행 CI 환경 구축 |
 | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | 자동 빌드 및 배포 환경 제공 |
 
 <br>
@@ -124,6 +111,10 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Re
  ┃ ┣ 📂fonts
  ┃ ┃ ┗ 📜PretendardStdVariable.woff2
  ┃ ┣ 📂images
+ ┃ ┃ ┣ 📜LOGO.png
+ ┃ ┃ ┣ 📜Tier_Graph.png
+ ┃ ┃ ┣ 📜diagram.png
+ ┃ ┃ ┗ 📜tier.png
  ┣ 📂server
  ┃ ┣ 📂utils
  ┃ ┃ ┣ 📜contribution.ts
@@ -177,6 +168,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 Contribution, Re
  ┃ ┃ ┃ ┣ 📜input-group.tsx
  ┃ ┃ ┃ ┣ 📜input.tsx
  ┃ ┃ ┃ ┣ 📜skeleton.tsx
+ ┃ ┃ ┃ ┣ 📜sonner.tsx
  ┃ ┃ ┃ ┣ 📜tabs.tsx
  ┃ ┃ ┃ ┣ 📜textarea.tsx
  ┃ ┃ ┃ ┗ 📜tooltip.tsx

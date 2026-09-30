@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Search } from "lucide-react"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./../ui/input-group"
+import { toast } from 'sonner';
 
 interface SearchBarProps {
   className?: string;
@@ -8,13 +10,21 @@ interface SearchBarProps {
 
 const SearchBar = ({ className }: SearchBarProps) => {
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!username.trim()) return;
-
-    // TODO: GitHub 사용자 검색 로직
+    
+    const trimmedUsername = username.trim();
+    
+    if (!trimmedUsername){
+      toast.warning('Username is required!', {
+        description: 'Please enter a GitHub username'
+      });
+      return;
+    }
+    
+    navigate(`/detail/${trimmedUsername}`);
   };
 
   return (

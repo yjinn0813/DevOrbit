@@ -39,6 +39,10 @@
   --popover: #18181b;
   --popover-foreground: #fafafa;
 
+  --toast-background: #09090b;
+  --toast-foreground: #fafafa;
+  --toast-description: #777777;
+
   --destructive: #ef4444;
   --ring: #3b82f6;
 
@@ -93,6 +97,10 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
 
+  --toast-background: var(--toast-background);
+  --toast-foreground: var(--toast-foreground);
+  --toast-description: var(--toast-description);
+
   --color-ring: var(--ring);
 
   --color-heatmap-low: var(--heatmap-low);
@@ -145,6 +153,10 @@
   --popover: #18181b;
   --popover-foreground: #fafafa;
 
+  --toast-background: #fafafa;
+  --toast-foreground: #09090b;
+  --toast-description: #777777;
+
   --destructive: #ef4444;
   --ring: #3b82f6;
 
@@ -163,6 +175,10 @@
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: #27272a;
   --sidebar-ring: #3b82f6;
+}
+
+[data-sonner-toast][data-styled="true"] [data-description] {
+  color: var(--toast-description);
 }
 
 @keyframes twinkle {
