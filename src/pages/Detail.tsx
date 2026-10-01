@@ -1,5 +1,6 @@
 /* Detail page */
 import { useParams } from "react-router-dom";
+import { ApiError } from "../api/github";
 import { useGithubUser } from "../hooks/useGithubUser";
 import useTitle from '../hooks/useTitle';
 import TopBtn from '../components/common/TopBtn';
@@ -20,19 +21,54 @@ import NotFound from './NotFound';
 // ====================
 const Detail = () => {
   const { username } = useParams();
-  const { data, isLoading, isError } = useGithubUser(username ?? "");
+  const { data, isPending, isError, error, refetch } = useGithubUser(username ?? "");
   useTitle(`${username}`);
 
-  if (isLoading) {
+  if (isPending) {
     return <DetailSkeleton />
   }
 
   if (isError) {
-    return <Error />;
-  }
+    if (!(error instanceof ApiError)) {
+      return (
+        <Error
+          title="Something went wrong"
+          message="We couldn't load the data."
+          onRetry={() => refetch()}
+        />
+      );
+    }
 
-  if (!data?.data?.user) {
-    return <NotFound />;
+    switch (error.status) {
+      case 404:
+        return <NotFound />;
+
+      case 403:
+        return (
+          <Error
+            title="GitHub API Rate Limit Exceeded"
+            message={`Too many requests have been made.\nPlease try again later.`}
+            onRetry={() => refetch()}
+          />
+        );
+
+      case 422:
+        return (
+          <Error
+            title="Invalid Request"
+            message={`Only personal GitHub accounts are supported.`}
+          />
+        );
+
+      default:
+        return (
+          <Error
+            title="Something went wrong"
+            message={`We couldn't load the data.\nPlease try again later.`}
+            onRetry={() => refetch()}
+          />
+        );
+    }
   }
 
   const user = data.data.user;

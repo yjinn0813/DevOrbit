@@ -11,7 +11,7 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 
 ## 1. 프로젝트 목적
 - GitHub GraphQL API를 활용한 데이터 조회 및 가공 경험
-- shadcn/ui와 Chart.js를 활용한 대시보드 UI 구성 및 데이터 시각화 학습
+- Shadcn/ui와 Chart.js를 활용한 대시보드 UI 구성 및 데이터 시각화 학습
 - pnpm을 활용한 패키지 관리 및 프로젝트 의존성 관리 학습
 - React/TypeScript 기반의 컴포넌트 설계 및 비동기 데이터 처리 경험
 
@@ -20,12 +20,13 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 ## 2. 개발 기간 & 단계
 - **기간**: 2026.09 ~
 - **개발 단계**:
-  - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 설계
-  - Phase 2. GitHub API 연동 & 로컬 API 서버 구축 (Express)
-  - Phase 3. 데이터 가공 & 대시보드 기능 구현 (Shadcn/ui)
-  - Phase 4. API 구조 개선 & 데이터 확장
-  - Phase 5. UI/UX 개선 & 반응형 대응
-  - Phase 6. 성능 최적화 & 배포
+  - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 설계 (Shadcn/ui)
+  - Phase 2. 공통 레이아웃 & 컴포넌트 제작
+  - Phase 3. 페이지 구조 및 예외처리 구현
+  - Phase 4. Dashboard 기능 구현 & GitHub API 연동 (Express)
+  - Phase 5. React Query 최적화
+  - Phase 6. 예외처리 & UX Polish
+  - Phase 7. 반응형 UI & 배포 환경 구성
 
 <br>
 
@@ -40,7 +41,7 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 * GitHub 사용자 프로필 및 기본 정보 제공
 * GitHub Contribution 데이터를 기반으로 한 Tier 제공
 * GitHub Contribution 및 Repository 통계 제공
-* Chart.js를 활용한 월별 Contribution 추이 및 Top Languages 시각화
+* Chart.js를 활용한 월별·연도별 Contribution 추이 및 Top Languages 시각화
 * 최근 1년간 활동을 기준으로 한 Most Active Repository 제공
 * 연속 Contribution 기록을 기반으로 한 Longest Contribution Streak 제공
 * shadcn/ui를 활용한 Card, Tooltip, Input, Button 등 UI 구성
@@ -52,7 +53,8 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 
 ### Error
 * GitHub API 또는 네트워크 오류 발생 시 에러 화면 제공
-* 재시도 기능 제공
+* 데이터 재요청을 통한 재시도 기능 지원
+* 지원하지 않는 Organization 계정 검색 시 별도 안내 제공
 
 <br>
 
@@ -121,7 +123,8 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┗ 📜repository.ts
  ┃ ┣ 📜contributionHistory.ts
  ┃ ┣ 📜githubUser.ts
- ┃ ┗ 📜index.ts
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜error.ts
  ┣ 📂src
  ┃ ┣ 📂api
  ┃ ┃ ┗ 📜github.ts

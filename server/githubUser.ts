@@ -1,27 +1,35 @@
 /* Github User Data GraphQL API (최근 1년 데이터) */
 
+import { RateLimitError, OrganizationError } from "./error";
 import type { GithubUser } from '../types/GithubUser';
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
-interface GithubGraphQLResponse {
-  data?: {
-    user: GithubUser | null;
-  };
-
-  errors?: {
-    message: string;
-  }[];
+interface GithubGraphQLError {
+  type: string;
+  path?: string[];
+  message: string;
 }
 
-/*
- * GitHub GraphQL API에서 유저 데이터 가져오기
- */
+interface GithubGraphQLResponse {
+  data?: {
+    user?: GithubUser | null;
+    organization?: {
+      login: string;
+    } | null;
+  };
+  errors?: GithubGraphQLError[];
+}
+
+// GitHub GraphQL API에서 유저 데이터 가져오기
 export const fetchGithubUser = async (
   username: string,
   token: string,
-): Promise<GithubUser> => {
+): Promise<GithubUser | null> => {
   const query = `
     query GetGithubUser($login: String!) {
+      organization(login: $login) {
+        login
+      }
       user(login: $login) {
         login
         name
@@ -126,7 +134,17 @@ export const fetchGithubUser = async (
     }),
   });
 
+  // Primary Rate Limit 잔여 요청 포인트 확인
+  const remaining = response.headers.get("x-ratelimit-remaining");
+
+  // Secondary Rate Limit 등 HTTP 403: 과도한 요청 방지
   if (!response.ok) {
+    if (response.status === 403) {
+      throw new RateLimitError(
+        "GitHub API rate limit exceeded.",
+      );
+    }
+
     throw new Error(
       `GitHub API request failed with status ${response.status}.`,
     );
@@ -135,16 +153,40 @@ export const fetchGithubUser = async (
   const result =
     (await response.json()) as GithubGraphQLResponse;
 
-  /*
-   * GraphQL은 HTTP 200이어도 errors가 포함될 수 있음
-   * response.ok만 확인하면 안됨
-   */
   if (result.errors?.length) {
+    if (remaining === "0") {
+      throw new RateLimitError(
+        "GitHub API rate limit exceeded.",
+      );
+    }; // Primary Rate Limit: 사용량 초과
+
+    const userNotFound = result.errors.find(
+      (error) =>
+        error.type === "NOT_FOUND" &&
+        error.path?.[0] === "user",
+    );
+
+    if (userNotFound) {
+      if (result.data?.organization) {
+        throw new OrganizationError(
+          "Organization accounts are not supported.",
+        );
+      }
+
+      return null;
+    }
+
     throw new Error(result.errors[0].message);
   }
+  /*
+    * GraphQL은 요청 자체가 정상적으로 처리되면 
+    * HTTP 200을 반환하더라도 응답 본문에 errors를 포함할 수 있음
+    * 따라서 response.ok만으로 요청 성공 여부를 판단할 수 없으며,
+    * 응답의 errors 필드를 추가로 확인해야 함
+  */
 
   if (!result.data?.user) {
-    throw new Error("GitHub user not found.");
+    return null;
   }
 
   return result.data.user;

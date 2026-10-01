@@ -4,8 +4,15 @@ import { Link } from 'react-router-dom';
 import useTitle from '../hooks/useTitle';
 import Starfield from '../components/common/Starfield';
 
-const Error = () => {
+interface ErrorProps {
+  onRetry?: () => void;
+  title?: string;
+  message: string;
+}
+
+const Error = ({ onRetry, title, message }: ErrorProps) => {
   useTitle('Error');
+  const messageLines = message.split('\n');
 
   return (
     <div className="relative my-auto flex flex-col items-center justify-center text-center">
@@ -15,22 +22,28 @@ const Error = () => {
         <h1 className="text-7xl font-bold text-primary">Error</h1>
 
         <p className="mt-4 text-2xl font-semibold dark:text-foreground">
-          Something went wrong
+          {title}
         </p>
 
-        <p className="mt-3 dark:text-muted-foreground">
-          We couldn't load the data.
-          <br />
-          Please try again later.
+        <p className="mt-3 dark:text-muted-foreground whitespace-pre-line">
+          {messageLines.map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < messageLines.length - 1 && <br />}
+            </span>
+          ))}
         </p>
 
-        <div className="mt-6 flex gap-4">
-          <button
-            type="button"
-            className="cursor-pointer rounded-md bg-primary px-5 py-3 text-primary-foreground transition-colors hover:bg-primary/80"
-          >
-            Try Again
-          </button>
+        <div className="mt-6 flex items-center justify-center gap-4">
+          {onRetry && (
+            <button
+              type="button"
+              onClick={onRetry}
+              className="cursor-pointer rounded-md bg-primary px-5 py-3 text-primary-foreground transition-colors hover:bg-primary/80"
+            >
+              Try Again
+            </button>
+          )}
 
           <Link
             to="/"
