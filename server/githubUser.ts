@@ -1,6 +1,6 @@
 /* Github User Data GraphQL API (최근 1년 데이터) */
 
-import { RateLimitError } from "./rateLimitError";
+import { RateLimitError, OrganizationError } from "./error";
 import type { GithubUser } from '../types/GithubUser';
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
@@ -13,6 +13,9 @@ interface GithubGraphQLError {
 interface GithubGraphQLResponse {
   data?: {
     user?: GithubUser | null;
+    organization?: {
+      login: string;
+    } | null;
   };
   errors?: GithubGraphQLError[];
 }
@@ -24,6 +27,9 @@ export const fetchGithubUser = async (
 ): Promise<GithubUser | null> => {
   const query = `
     query GetGithubUser($login: String!) {
+      organization(login: $login) {
+        login
+      }
       user(login: $login) {
         login
         name
@@ -147,23 +153,30 @@ export const fetchGithubUser = async (
   const result =
     (await response.json()) as GithubGraphQLResponse;
 
-  // Primary Rate Limit: 사용량 초과
   if (result.errors?.length) {
     if (remaining === "0") {
       throw new RateLimitError(
         "GitHub API rate limit exceeded.",
       );
-    }
+    }; // Primary Rate Limit: 사용량 초과
 
-    const error = result.errors[0];
+    const userNotFound = result.errors.find(
+      (error) =>
+        error.type === "NOT_FOUND" &&
+        error.path?.[0] === "user",
+    );
 
-    if (error.type === "NOT_FOUND" &&
-      error.path?.[0] === "user"
-    ) {
+    if (userNotFound) {
+      if (result.data?.organization) {
+        throw new OrganizationError(
+          "Organization accounts are not supported.",
+        );
+      }
+
       return null;
     }
 
-    throw new Error(error.message);
+    throw new Error(result.errors[0].message);
   }
   /*
     * GraphQL은 요청 자체가 정상적으로 처리되면 

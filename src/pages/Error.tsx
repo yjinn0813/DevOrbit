@@ -5,13 +5,14 @@ import useTitle from '../hooks/useTitle';
 import Starfield from '../components/common/Starfield';
 
 interface ErrorProps {
-  onRetry: () => void;
+  onRetry?: () => void;
   title?: string;
-  message?: string;
+  message: string;
 }
 
 const Error = ({ onRetry, title, message }: ErrorProps) => {
   useTitle('Error');
+  const messageLines = message.split('\n');
 
   return (
     <div className="relative my-auto flex flex-col items-center justify-center text-center">
@@ -24,20 +25,25 @@ const Error = ({ onRetry, title, message }: ErrorProps) => {
           {title}
         </p>
 
-        <p className="mt-3 dark:text-muted-foreground">
-          {message}
-          <br />
-          Please try again later.
+        <p className="mt-3 dark:text-muted-foreground whitespace-pre-line">
+          {messageLines.map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < messageLines.length - 1 && <br />}
+            </span>
+          ))}
         </p>
 
         <div className="mt-6 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={onRetry}
-            className="cursor-pointer rounded-md bg-primary px-5 py-3 text-primary-foreground transition-colors hover:bg-primary/80"
-          >
-            Try Again
-          </button>
+          {onRetry && (
+            <button
+              type="button"
+              onClick={onRetry}
+              className="cursor-pointer rounded-md bg-primary px-5 py-3 text-primary-foreground transition-colors hover:bg-primary/80"
+            >
+              Try Again
+            </button>
+          )}
 
           <Link
             to="/"

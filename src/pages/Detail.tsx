@@ -29,23 +29,46 @@ const Detail = () => {
   }
 
   if (isError) {
-    if (error instanceof ApiError && error.status === 404) {
-      return <NotFound />;
+    if (!(error instanceof ApiError)) {
+      return (
+        <Error
+          title="Something went wrong"
+          message="We couldn't load the data."
+          onRetry={() => refetch()}
+        />
+      );
     }
 
-    if (error instanceof ApiError && error.status === 403) {
-      return <Error 
-        title="GitHub API Rate Limit Exceeded"
-        message="Too many requests have been made."
-        onRetry={() => refetch()} 
-      />;
-    }
+    switch (error.status) {
+      case 404:
+        return <NotFound />;
 
-    return <Error 
-      title="Something went wrong"
-      message="We couldn't load the data."
-      onRetry={() => refetch()} 
-    />;
+      case 403:
+        return (
+          <Error
+            title="GitHub API Rate Limit Exceeded"
+            message={`Too many requests have been made.\nPlease try again later.`}
+            onRetry={() => refetch()}
+          />
+        );
+
+      case 422:
+        return (
+          <Error
+            title="Invalid Request"
+            message={`Only personal GitHub accounts are supported.`}
+          />
+        );
+
+      default:
+        return (
+          <Error
+            title="Something went wrong"
+            message={`We couldn't load the data.\nPlease try again later.`}
+            onRetry={() => refetch()}
+          />
+        );
+    }
   }
 
   const user = data.data.user;

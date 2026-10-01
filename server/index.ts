@@ -2,7 +2,7 @@
 
 import express from "express";
 import dotenv from "dotenv";
-import { RateLimitError } from './rateLimitError';
+import { RateLimitError, OrganizationError } from './error';
 import { fetchGithubUser } from "./githubUser";
 import { fetchContributionHistory } from "./contributionHistory";
 import { calculateContributionStats } from "./utils/contribution";
@@ -93,6 +93,12 @@ app.get("/api/github", async (req, res) => {
 
     if (error instanceof RateLimitError) {
       return res.status(403).json({
+        message: error.message,
+      });
+    }
+
+    if (error instanceof OrganizationError) {
+      return res.status(422).json({
         message: error.message,
       });
     }
