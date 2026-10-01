@@ -33,11 +33,19 @@ const Detail = () => {
       return <NotFound />;
     }
 
-    return <Error onRetry={() => refetch()} />;
-  }
+    if (error instanceof ApiError && error.status === 403) {
+      return <Error 
+        title="GitHub API Rate Limit Exceeded"
+        message="Too many requests have been made."
+        onRetry={() => refetch()} 
+      />;
+    }
 
-  if (!data) {
-    return <Error onRetry={() => refetch()} />;
+    return <Error 
+      title="Something went wrong"
+      message="We couldn't load the data."
+      onRetry={() => refetch()} 
+    />;
   }
 
   const user = data.data.user;

@@ -6,9 +6,11 @@ import Starfield from '../components/common/Starfield';
 
 interface ErrorProps {
   onRetry: () => void;
+  title?: string;
+  message?: string;
 }
 
-const Error = ({ onRetry }: ErrorProps) => {
+const Error = ({ onRetry, title, message }: ErrorProps) => {
   useTitle('Error');
 
   return (
@@ -19,16 +21,16 @@ const Error = ({ onRetry }: ErrorProps) => {
         <h1 className="text-7xl font-bold text-primary">Error</h1>
 
         <p className="mt-4 text-2xl font-semibold dark:text-foreground">
-          Something went wrong
+          {title}
         </p>
 
         <p className="mt-3 dark:text-muted-foreground">
-          We couldn't load the data.
+          {message}
           <br />
           Please try again later.
         </p>
 
-        <div className="mt-6 flex gap-4">
+        <div className="mt-6 flex items-center justify-center gap-4">
           <button
             type="button"
             onClick={onRetry}
