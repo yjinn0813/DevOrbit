@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import useTitle from '../hooks/useTitle';
 import Starfield from '../components/common/Starfield';
 
-const Error = () => {
+interface ErrorProps {
+  onRetry: () => void;
+}
+
+const Error = ({ onRetry }: ErrorProps) => {
   useTitle('Error');
 
   return (
@@ -27,6 +31,7 @@ const Error = () => {
         <div className="mt-6 flex gap-4">
           <button
             type="button"
+            onClick={onRetry}
             className="cursor-pointer rounded-md bg-primary px-5 py-3 text-primary-foreground transition-colors hover:bg-primary/80"
           >
             Try Again

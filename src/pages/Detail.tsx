@@ -21,10 +21,10 @@ import NotFound from './NotFound';
 // ====================
 const Detail = () => {
   const { username } = useParams();
-  const { data, isLoading, isError, error } = useGithubUser(username ?? "");
+  const { data, isPending, isError, error, refetch } = useGithubUser(username ?? "");
   useTitle(`${username}`);
 
-  if (isLoading) {
+  if (isPending) {
     return <DetailSkeleton />
   }
 
@@ -33,7 +33,11 @@ const Detail = () => {
       return <NotFound />;
     }
 
-    return <Error />;
+    return <Error onRetry={() => refetch()} />;
+  }
+
+  if (!data) {
+    return <Error onRetry={() => refetch()} />;
   }
 
   const user = data.data.user;
