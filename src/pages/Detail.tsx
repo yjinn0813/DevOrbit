@@ -1,5 +1,6 @@
 /* Detail page */
 import { useParams } from "react-router-dom";
+import { ApiError } from "../api/github";
 import { useGithubUser } from "../hooks/useGithubUser";
 import useTitle from '../hooks/useTitle';
 import TopBtn from '../components/common/TopBtn';
@@ -20,7 +21,7 @@ import NotFound from './NotFound';
 // ====================
 const Detail = () => {
   const { username } = useParams();
-  const { data, isLoading, isError } = useGithubUser(username ?? "");
+  const { data, isLoading, isError, error } = useGithubUser(username ?? "");
   useTitle(`${username}`);
 
   if (isLoading) {
@@ -28,11 +29,11 @@ const Detail = () => {
   }
 
   if (isError) {
-    return <Error />;
-  }
+    if (error instanceof ApiError && error.status === 404) {
+      return <NotFound />;
+    }
 
-  if (!data?.data?.user) {
-    return <NotFound />;
+    return <Error />;
   }
 
   const user = data.data.user;

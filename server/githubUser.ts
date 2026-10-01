@@ -3,23 +3,24 @@
 import type { GithubUser } from '../types/GithubUser';
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
-interface GithubGraphQLResponse {
-  data?: {
-    user: GithubUser | null;
-  };
-
-  errors?: {
-    message: string;
-  }[];
+interface GithubGraphQLError {
+  type: string;
+  path?: string[];
+  message: string;
 }
 
-/*
- * GitHub GraphQL API에서 유저 데이터 가져오기
- */
+interface GithubGraphQLResponse {
+  data?: {
+    user?: GithubUser | null;
+  };
+  errors?: GithubGraphQLError[];
+}
+
+// GitHub GraphQL API에서 유저 데이터 가져오기
 export const fetchGithubUser = async (
   username: string,
   token: string,
-): Promise<GithubUser> => {
+): Promise<GithubUser | null> => {
   const query = `
     query GetGithubUser($login: String!) {
       user(login: $login) {
@@ -136,15 +137,25 @@ export const fetchGithubUser = async (
     (await response.json()) as GithubGraphQLResponse;
 
   /*
-   * GraphQL은 HTTP 200이어도 errors가 포함될 수 있음
-   * response.ok만 확인하면 안됨
-   */
+    * GraphQL은 요청 자체가 정상적으로 처리되면 
+    * HTTP 200을 반환하더라도 응답 본문에 errors를 포함할 수 있음
+    * 따라서 response.ok만으로 요청 성공 여부를 판단할 수 없으며,
+    * 응답의 errors 필드를 추가로 확인해야 함
+  */
   if (result.errors?.length) {
-    throw new Error(result.errors[0].message);
+    const error = result.errors[0];
+
+    if (error.type === "NOT_FOUND" &&
+      error.path?.[0] === "user"
+    ) {
+      return null;
+    }
+
+    throw new Error(error.message);
   }
 
   if (!result.data?.user) {
-    throw new Error("GitHub user not found.");
+    return null;
   }
 
   return result.data.user;
