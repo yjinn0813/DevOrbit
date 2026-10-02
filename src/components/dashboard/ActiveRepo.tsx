@@ -53,11 +53,11 @@ const ActiveRepo = ({ user }: ActiveRepoProps) => {
 
   // ==========
   return (
-    <Card className="border border-secondary/50 bg-foreground dark:bg-card">
+    <Card className="border border-secondary/50 bg-foreground md:min-h-72 dark:bg-card">
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
           <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
-            Active Repository
+            Active Repo
           </div>
           <InfoTooltip content='Repositories ranked by combined commit and pull request activity over the past year'/>
         </div>
