@@ -74,10 +74,9 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
 | 기술/패키지 | 사용 목적 |
 | --- | --- |
 | ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) | 컴포넌트 기반 SPA 구조 설계 |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white) | 안정적인 코드 작성 및 유지보수성 향상 |
-| ![React Query](https://img.shields.io/badge/React_Query-FF4154?style=flat-square&logo=reactquery&logoColor=white) | API 데이터 fetching 및 캐싱 |
-| ![Zustand](https://img.shields.io/badge/Zustand-433E38?style=flat-square&logo=zustand&logoColor=white) | 클라이언트 전역 상태 관리 |
-| ![ChartJS](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chart.js&logoColor=white) | GitHub 데이터를 차트 형태로 시각화 |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white) | 타입 기반 코드 작성 및 유지보수성 향상 |
+| ![React Query](https://img.shields.io/badge/React_Query-FF4154?style=flat-square&logo=reactquery&logoColor=white) | GitHub API 데이터 fetching 및 캐싱 |
+| ![ChartJS](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chart.js&logoColor=white) | GitHub 활동 데이터 시각화 |
 | `GitHub GraphQL API` | GitHub 사용자 및 Repository 데이터 조회 |
 | `React Router` | 페이지 라우팅 및 404 예외 처리 |
 
@@ -87,7 +86,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
 | ![tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=TailwindCSS&logoColor=white) | 유틸리티 기반 및 반응형 UI 스타일링 |
 | ![shadcn/ui](https://img.shields.io/badge/Shadcn/ui-000000?style=flat-square&logo=shadcnui&logoColor=white) | 재사용 가능한 UI 컴포넌트 구성 |
 | `Sonner` | 사용자 입력 및 상태에 대한 Toast 알림 UI 구현 |
-| `lucide-react` | 다양한 인터페이스 아이콘을 React 컴포넌트로 사용 |
+| `lucide-react` | 다양한 인터페이스 아이콘 구성 |
 
 ### Tooling & Deployment
 | 기술/패키지 | 사용 목적 |

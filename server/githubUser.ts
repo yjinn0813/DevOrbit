@@ -160,6 +160,11 @@ export const fetchGithubUser = async (
       );
     }; // Primary Rate Limit: 사용량 초과
 
+    // 정상적인 User 계정만 조회
+    if (result.data?.user) {
+      return result.data.user;
+    }
+
     const userNotFound = result.errors.find(
       (error) =>
         error.type === "NOT_FOUND" &&
