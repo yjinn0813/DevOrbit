@@ -52,9 +52,9 @@ const YearlyTrend = ({ user }: YearlyProps) => {
     <Card className="border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
-          <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
+          <h2 className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
             Yearly Trend
-          </div>
+          </h2>
           <InfoTooltip content='Annual contribution totals based on GitHub contribution data'/>
         </div>
 
