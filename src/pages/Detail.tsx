@@ -15,6 +15,7 @@ import ContributionStreak from '../components/dashboard/ContributionStreak';
 import TierBadge from '../components/dashboard/TierBadge';
 import DetailSkeleton from '../components/dashboard/DetailSkeleton';
 import ReposRecord from '../components/dashboard/ReposRecord';
+import RepoLangChart from '../components/dashboard/RepoLangChart';
 import Error from './Error';
 import NotFound from './NotFound';
 
@@ -117,6 +118,10 @@ const Detail = () => {
 
       <div className="md:col-span-2">
         <ReposRecord repos={user.repositoryRecords}/>
+      </div>
+
+      <div className="md:col-span-2">
+        <RepoLangChart user={user} />
       </div>
       
       <TopBtn />

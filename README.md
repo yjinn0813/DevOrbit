@@ -112,6 +112,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┣ 📂fonts
  ┃ ┃ ┗ 📜PretendardStdVariable.woff2
  ┃ ┣ 📂images
+ ┃ ┃ ┣ 📜Error_Handling_Flow.png
  ┃ ┃ ┣ 📜LOGO.png
  ┃ ┃ ┣ 📜Tier_Graph.png
  ┃ ┃ ┣ 📜diagram.png
@@ -121,9 +122,9 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┣ 📜contribution.ts
  ┃ ┃ ┗ 📜repository.ts
  ┃ ┣ 📜contributionHistory.ts
+ ┃ ┣ 📜error.ts
  ┃ ┣ 📜githubUser.ts
- ┃ ┣ 📜index.ts
- ┃ ┗ 📜error.ts
+ ┃ ┗ 📜index.ts
  ┣ 📂src
  ┃ ┣ 📂api
  ┃ ┃ ┗ 📜github.ts
@@ -144,6 +145,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┃ ┃ ┣ 📜ActivitySkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜LanguageSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜ProfileSkeleton.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜RepoLangChartSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜RepoRecordSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜RepoSkeleton.tsx
  ┃ ┃ ┃ ┃ ┣ 📜StreakSkeleton.tsx
@@ -158,6 +160,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┃ ┣ 📜GemIcon.tsx
  ┃ ┃ ┃ ┣ 📜LanguageChart.tsx
  ┃ ┃ ┃ ┣ 📜ProfileHeader.tsx
+ ┃ ┃ ┃ ┣ 📜RepoLangChart.tsx
  ┃ ┃ ┃ ┣ 📜RepoStats.tsx
  ┃ ┃ ┃ ┣ 📜ReposRecord.tsx
  ┃ ┃ ┃ ┣ 📜TierBadge.tsx
@@ -169,6 +172,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┃ ┣ 📜card.tsx
  ┃ ┃ ┃ ┣ 📜input-group.tsx
  ┃ ┃ ┃ ┣ 📜input.tsx
+ ┃ ┃ ┃ ┣ 📜select.tsx
  ┃ ┃ ┃ ┣ 📜skeleton.tsx
  ┃ ┃ ┃ ┣ 📜sonner.tsx
  ┃ ┃ ┃ ┣ 📜tabs.tsx
