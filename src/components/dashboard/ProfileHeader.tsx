@@ -18,35 +18,36 @@ const ProfileHeader = ({ user }: ProfileHeaderProps) => {
     Math.floor((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
   
   return (
-    <Card className="border border-secondary/50 bg-foreground dark:bg-card">
-      <CardContent className="flex flex-row items-center">
-        <img
-          src={user.avatarUrl}
-          alt={user.login}
-          className="size-32 rounded-full object-cover max-[420px]:size-20"
-        />
+    <a
+      href={`https://github.com/${user.login}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className='block cursor-pointer'
+    >
+      <Card className="border border-secondary/50 bg-foreground dark:bg-card">
+        <CardContent className="flex flex-row items-center">
+          <img
+            src={user.avatarUrl}
+            alt={user.login}
+            className="size-32 rounded-full object-cover max-[420px]:size-20"
+          />
 
-        <div className="ml-6 max-[420px]:ml-4">
-          <p className="text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl">
-            {user.name}
-          </p>
+          <div className="ml-6 max-[420px]:ml-4">
+            <p className="text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl">
+              {user.name}
+            </p>
 
-          <p className="my-1.5 text-lg text-muted-foreground max-[420px]:my-1 max-[420px]:text-sm">
-            <a
-              href={`https://github.com/${user.login}`}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <p className="my-1.5 text-lg text-muted-foreground max-[420px]:my-1 max-[420px]:text-sm">
               @{user.login}
-            </a>
-          </p>
+            </p>
 
-          <p className="text-sm text-muted-foreground max-[420px]:text-xs">
-            On GitHub for {joinedDays} days
-          </p>
-        </div>
-      </CardContent>
-    </Card>
+            <p className="text-sm text-muted-foreground max-[420px]:text-xs">
+              On GitHub for {joinedDays} days
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </a>
   )
 }
 
