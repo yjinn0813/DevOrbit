@@ -82,7 +82,7 @@ const RepoLangChart = ({ user }: LanguageChartProps) => {
           <div className="text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl">
             Repository Languages
           </div>
-          <InfoTooltip content="Language distribution across the user owned, non-fork repositories, based on code size" />
+          <InfoTooltip content="Language distribution by code size for only user created repository. The most recently created repository with language data is selected by default." />
         </div>
 
         <div className="mt-6 flex flex-col gap-6 md:flex-row md:gap-10">
