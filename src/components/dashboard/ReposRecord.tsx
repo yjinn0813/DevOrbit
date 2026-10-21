@@ -64,9 +64,9 @@ const ReposRecord = ({ repos }: ReposRecordProps) => {
     <Card className="border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
-          <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
+          <h2 className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
             Repositories Record
-          </div>
+          </h2>
           <InfoTooltip content='Daily contribution activity for the most active repositories over the past year, based on commits and pull requests'/>
         </div>
 
@@ -129,6 +129,7 @@ const ReposRecord = ({ repos }: ReposRecordProps) => {
                               }); 
                             }} 
                             onMouseLeave={() => { setTooltip(null); }}
+                            aria-label={`${activity.date}: ${activity.value} contributions`}
                           />
                         )}
                       </CalendarHeatmapBody>

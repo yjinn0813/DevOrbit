@@ -24,9 +24,9 @@ const ContributionStreak = ({ user }: ContributionProps) => {
     <Card className="min-h-68 border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-col">
         <div className='flex gap-2.5 items-baseline'>
-          <div className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
+          <h2 className='text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl'>
             Contribution Streak
-          </div>
+          </h2>
           <InfoTooltip content='Contribution activity and streak statistics based on GitHub contribution data'/>
         </div>
         

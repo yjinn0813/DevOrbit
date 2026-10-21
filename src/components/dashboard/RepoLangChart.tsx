@@ -79,9 +79,9 @@ const RepoLangChart = ({ user }: LanguageChartProps) => {
     <Card className="border border-secondary/50 bg-foreground dark:bg-card">
       <CardContent className="flex flex-col">
         <div className="flex items-baseline gap-2.5">
-          <div className="text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl">
+          <h2 className="text-3xl font-bold text-background dark:text-foreground max-[420px]:text-2xl">
             Repository Languages
-          </div>
+          </h2>
           <InfoTooltip content="Language distribution by code size for only user created repository. The most recently created repository with language data is selected by default." />
         </div>
 
@@ -116,7 +116,11 @@ const RepoLangChart = ({ user }: LanguageChartProps) => {
                 <div className='flex flex-col items-center justify-center gap-6 md:flex-row md:gap-10'>
                   {/* Chart */}
                   <div className="h-64 w-full md:w-[55%] md:h-80">
-                    <Bar data={chartData} options={options} />
+                    <Bar data={chartData} 
+                      options={options}
+                      role="img"
+                      aria-label={`Language distribution for repository: ${selectedRepoName}`}
+                    />
                   </div>
 
                   {/* Legend */}
