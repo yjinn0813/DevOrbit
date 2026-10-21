@@ -21,6 +21,7 @@ export const GemIcon: React.FC<GemIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={`drop-shadow-md shrink-0 ${className}`}
+      aria-hidden="true"
     >
       <defs>
         {/* 전달받은 color 단일값으로 어두운 그라데이션 자동 생성 */}

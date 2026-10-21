@@ -116,7 +116,11 @@ const RepoLangChart = ({ user }: LanguageChartProps) => {
                 <div className='flex flex-col items-center justify-center gap-6 md:flex-row md:gap-10'>
                   {/* Chart */}
                   <div className="h-64 w-full md:w-[55%] md:h-80">
-                    <Bar data={chartData} options={options} />
+                    <Bar data={chartData} 
+                      options={options}
+                      role="img"
+                      aria-label={`Language distribution for repository: ${selectedRepoName}`}
+                    />
                   </div>
 
                   {/* Legend */}

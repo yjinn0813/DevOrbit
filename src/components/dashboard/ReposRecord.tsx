@@ -129,6 +129,7 @@ const ReposRecord = ({ repos }: ReposRecordProps) => {
                               }); 
                             }} 
                             onMouseLeave={() => { setTooltip(null); }}
+                            aria-label={`${activity.date}: ${activity.value} contributions`}
                           />
                         )}
                       </CalendarHeatmapBody>

@@ -73,7 +73,11 @@ const ContributionTrend = ({ user } : ContributionTrendProps) => {
 
         <div className="mt-6 flex flex-row items-center justify-center gap-10">
           <div className="mt-6 h-64 w-full md:h-80">
-            <Line data={chartData} options={options} />
+            <Line data={chartData} 
+              options={options} 
+              role="img" 
+              aria-label="Monthly contribution trend over the past year"
+            />
           </div>
         </div>
       </CardContent>

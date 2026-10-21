@@ -93,7 +93,11 @@ const LanguageChart = ({ user }: LanguageChartProps) => {
             <>
               {/* Chart */}
               <div className='h-64 w-full md:h-80 md:w-[55%]'>
-                <Bar data={chartData} options={options} />
+                <Bar data={chartData} 
+                  options={options}
+                  role="img"
+                  aria-label="Language distribution across the user's non-fork repositories, based on code size" 
+                />
               </div>
 
               {/* Legend */}
