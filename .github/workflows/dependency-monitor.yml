@@ -1,0 +1,125 @@
+# Dependency Monitor Workflow
+
+name: Dependency Monitor for DevOrbit
+
+on:
+  schedule: 
+    - cron: '0 0 * * 1' #KST 월요일 09:00
+  workflow_dispatch:
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run pnpm audit
+        id: audit
+        run: |
+          if AUDIT RESULT=$(pnpm audit --json); then
+            AUDIT_EXIT_CODE=0
+          else
+            AUDIT_EXIT_CODE=$?
+          fi
+
+          if ! printf '%s' "$AUDIT RESULT" | jq -e '
+            type == "object" and
+            (.advisories | type == "object") and
+            (.metadata.vulnerabilities | type == "object")
+          ' > /dev/null; then
+            echo "pnpm audit 검사에 실패했거나 결과 형식이 유효하지 않습니다."
+            exit 1
+          fi
+          
+          ISSUES=$(printf '%s' "$AUDIT RESULT" | jq -r '
+            [
+              .advisories
+              | to_entries[]
+              | select(.value.severity == "high" or .value.severity == "critical")
+              | "- 패키지: \(.value.module_name)\n- 심각도: \(.value.severity | ascii_upcase)\n- 취약점: \(.value.title)\n- 권고: \(.value.url)"
+            ] | join("\n\n")
+          ') || exit 1
+
+          {
+            echo "issues<<EOF"
+            echo "$ISSUES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+        
+        # ========================================
+        # 1. 1. pnpm audit 결과를 JSON 형태로 변수에 저장
+        # >> 종료 코드를 별도로 보관하여 취약점 발견 여부와 검사 실패를 구분
+        # 2. advisories 객체에서 High / Critical 취약점만 추출
+        # >> 보고서에 넣을 문자열 형태로 가공하여 ISSUES 변수에 저장
+        # 3. 다음 스텝(Notify)에서
+        # steps.audit.outputs.issues 형태로 읽을 수 있도록
+        # issues 라는 이름의 GitHub Actions Output 등록
+        # ========================================
+      
+      - name: Slack Notify - OK
+        if: steps.audit.outputs.issues == ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          CURRENT_TIME=$(TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M (KST)')
+
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"text\":\"✅ 에이든의 보안 점검 리포트 [성공]\n\nDevOrbit 프로젝트의 보안 점검을 완료했습니다.\n현재 보안 취약점이 없습니다.\n\n- 브랜치: ${{ github.ref_name }}\n- 시간: ${CURRENT_TIME}\n\n모든 의존성은 안전한 상태입니다.\"
+            }" \
+            "$SLACK_WEBHOOK_URL"
+
+      - name: Slack Notify - WARN
+        if: steps.audit.outputs.issues != '' && success()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          CURRENT_TIME=$(TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M (KST)')
+          MESSAGE="⚠️ 에이든의 보안 점검 리포트 [경고]
+          
+          DevOrbit 프로젝트에서 보안 취약점이 발견되었습니다.
+          
+          ${{ steps.audit.outputs.issues }}
+          - 브랜치: ${{ github.ref_name }}
+          - 시간: ${CURRENT_TIME}
+          
+          보안 취약점에 대한 추가 조치가 필요합니다."
+          
+          jq -n \
+            --arg text "$MESSAGE" \
+            '{text: $text}' \
+          | curl -X POST \
+            -H "Content-Type: application/json" \
+            -d @- \
+            "$SLACK_WEBHOOK_URL"
+      
+      - name: Slack Notify - FAIL
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          CURRENT_TIME=$(TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M (KST)')
+
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"text\":\"❌ 에이든의 보안 점검 리포트 [실패]\n\nDevOrbit 프로젝트 점검 중 오류가 발생했습니다.\n\n- 브랜치: ${{ github.ref_name }}\n- 시간: ${CURRENT_TIME}\n\n점검이 정상적으로 완료되지 않았습니다.\n원인 확인이 필요합니다.\"
+            }" \
+            "$SLACK_WEBHOOK_URL"
