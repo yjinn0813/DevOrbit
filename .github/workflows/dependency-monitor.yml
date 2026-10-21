@@ -32,13 +32,13 @@ jobs:
       - name: Run pnpm audit
         id: audit
         run: |
-          if AUDIT RESULT=$(pnpm audit --json); then
+          if AUDIT_RESULT=$(pnpm audit --json); then
             AUDIT_EXIT_CODE=0
           else
             AUDIT_EXIT_CODE=$?
           fi
 
-          if ! printf '%s' "$AUDIT RESULT" | jq -e '
+          if ! printf '%s' "$AUDIT_RESULT" | jq -e '
             type == "object" and
             (.advisories | type == "object") and
             (.metadata.vulnerabilities | type == "object")
@@ -47,7 +47,7 @@ jobs:
             exit 1
           fi
           
-          ISSUES=$(printf '%s' "$AUDIT RESULT" | jq -r '
+          ISSUES=$(printf '%s' "$AUDIT_RESULT" | jq -r '
             [
               .advisories
               | to_entries[]
