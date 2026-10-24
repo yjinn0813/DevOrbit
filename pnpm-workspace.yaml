@@ -1,2 +1,6 @@
 allowBuilds:
   esbuild: false
+
+# 보안 패치 적용 (body-parser 취약점 대응)
+overrides:
+  body-parser: '>=2.4.0'
