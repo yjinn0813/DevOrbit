@@ -18,15 +18,14 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 <br>
 
 ## 2. 개발 기간 & 단계
-- **기간**: 2026.09 ~
+- **기간**: 2026.09 ~ 2026.10
 - **개발 단계**:
   - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 설계 (Shadcn/ui)
-  - Phase 2. 공통 레이아웃 & 컴포넌트 제작
-  - Phase 3. 페이지 구조 및 예외처리 구현
-  - Phase 4. Dashboard 기능 구현 & GitHub API 연동 (Express)
-  - Phase 5. React Query 최적화
-  - Phase 6. 예외처리 & UX Polish
-  - Phase 7. 반응형 UI & 배포 환경 구성
+  - Phase 2. 공통 레이아웃 & 페이지 구조 설계
+  - Phase 3. Dashboard 기능 구현 & GitHub API 연동 (Express)
+  - Phase 4. API 아키텍처 리팩터링 & React Query 최적화
+  - Phase 5. 예외처리 & UI/UX Polish
+  - Phase 6. 빌드 및 배포 환경 구성
 
 <br>
 
@@ -116,6 +115,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┣ 📜LOGO.png
  ┃ ┃ ┣ 📜Tier_Graph.png
  ┃ ┃ ┣ 📜diagram.png
+ ┃ ┃ ┣ 📜og_image.png
  ┃ ┃ ┗ 📜tier.png
  ┣ 📂server
  ┃ ┣ 📂utils
