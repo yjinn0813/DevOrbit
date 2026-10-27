@@ -105,6 +105,8 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
 ## 6. 디렉토리 구조
 ```bash
 📦DevOrbit
+ ┣ 📂api
+ ┃ ┗ 📜github.ts
  ┣ 📂public
  ┃ ┣ 📂favicon
  ┃ ┃ ┗ 📜DevOrbit.svg
@@ -210,7 +212,6 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┣ 📜package.json
  ┣ 📜pnpm-lock.yaml
  ┣ 📜pnpm-workspace.yaml
- ┣ 📜server.ts
  ┣ 📜tsconfig.app.json
  ┣ 📜tsconfig.json
  ┣ 📜tsconfig.node.json
