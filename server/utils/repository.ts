@@ -1,6 +1,6 @@
 /* Repository Record calculate function */
 
-import { RepositoryRecord } from '../../types/RepositoryRecord';
+import type { RepositoryRecord } from '../../types/RepositoryRecord.js';
 
 interface CommitContribution {
   repository: {
