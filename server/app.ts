@@ -1,11 +1,11 @@
 /* Express application configuration and routes */
 
 import express from "express";
-import { RateLimitError, OrganizationError } from './error';
-import { fetchGithubUser } from "./githubUser";
-import { fetchContributionHistory } from "./contributionHistory";
-import { calculateContributionStats } from "./utils/contribution";
-import { calculateRepositoryContributions, getTopRepositories } from "./utils/repository";
+import { RateLimitError, OrganizationError } from './error.js';
+import { fetchGithubUser } from "./githubUser.js";
+import { fetchContributionHistory } from "./contributionHistory.js";
+import { calculateContributionStats } from "./utils/contribution.js";
+import { calculateRepositoryContributions, getTopRepositories } from "./utils/repository.js";
 
 const app = express();
 

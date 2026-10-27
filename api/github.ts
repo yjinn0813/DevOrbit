@@ -1,11 +1,11 @@
 /* Vercel serverless function for GitHub API */
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { RateLimitError, OrganizationError } from "../server/error";
-import { fetchGithubUser } from "../server/githubUser";
-import { fetchContributionHistory } from "../server/contributionHistory";
-import { calculateContributionStats } from "../server/utils/contribution";
-import { calculateRepositoryContributions, getTopRepositories } from "../server/utils/repository";
+import { RateLimitError, OrganizationError } from "../server/error.js";
+import { fetchGithubUser } from "../server/githubUser.js";
+import { fetchContributionHistory } from "../server/contributionHistory.js";
+import { calculateContributionStats } from "../server/utils/contribution.js";
+import { calculateRepositoryContributions, getTopRepositories } from "../server/utils/repository.js";
 
 export default async function handler(
   req: VercelRequest,

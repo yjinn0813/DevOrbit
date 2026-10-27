@@ -1,7 +1,7 @@
 /* Github User Data GraphQL API (최근 1년 데이터) */
 
-import { RateLimitError, OrganizationError } from "./error";
-import type { GithubUser } from '../types/GithubUser';
+import { RateLimitError, OrganizationError } from "./error.js";
+import type { GithubUser } from '../types/GithubUser.js';
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
 interface GithubGraphQLError {

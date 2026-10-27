@@ -1,6 +1,6 @@
 /* contribution data calculate */
 
-import type { ContributionHistoryDay } from "../contributionHistory";
+import type { ContributionHistoryDay } from "../contributionHistory.js";
 
 // 특정 날짜 사이의 차이 계산 (날짜가 정확히 하루 차이인지 확인)
 const getDateDifference = (
