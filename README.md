@@ -18,7 +18,7 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 <br>
 
 ## 2. 개발 기간 & 단계
-- **기간**: 2026.09 ~ 2026.10
+- **기간**: 2026.09 ~ 2026.11
 - **개발 단계**:
   - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 설계 (Shadcn/ui)
   - Phase 2. 공통 레이아웃 & 페이지 구조 설계
@@ -215,5 +215,6 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┣ 📜tsconfig.app.json
  ┣ 📜tsconfig.json
  ┣ 📜tsconfig.node.json
+ ┣ 📜vercel.json
  ┗ 📜vite.config.ts
 ```
