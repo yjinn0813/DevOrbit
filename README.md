@@ -45,7 +45,7 @@ DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 �
 * 연속 Contribution 기록을 기반으로 한 Longest Contribution Streak 제공
 * shadcn/ui를 활용한 Card, Tooltip, Input, Button 등 UI 구성
 * 각 데이터를 독립적인 Card Component로 구성
-* 반응형 레이아웃 지원
+* 반응형 레이아웃 및 외부 공유 기능 지원
 
 ### Not Found
 * 존재하지 않는 경로 또는 GitHub 사용자를 조회한 경우 404 페이지 제공
@@ -140,6 +140,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┃ ┣ 📜InfoTooltip.tsx
  ┃ ┃ ┃ ┣ 📜Logo.tsx
  ┃ ┃ ┃ ┣ 📜SearchBar.tsx
+ ┃ ┃ ┃ ┣ 📜SharePopover.tsx
  ┃ ┃ ┃ ┣ 📜Starfield.tsx
  ┃ ┃ ┃ ┗ 📜TopBtn.tsx
  ┃ ┃ ┣ 📂dashboard
@@ -175,6 +176,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┃ ┣ 📜card.tsx
  ┃ ┃ ┃ ┣ 📜input-group.tsx
  ┃ ┃ ┃ ┣ 📜input.tsx
+ ┃ ┃ ┃ ┣ 📜popover.tsx
  ┃ ┃ ┃ ┣ 📜select.tsx
  ┃ ┃ ┃ ┣ 📜skeleton.tsx
  ┃ ┃ ┃ ┣ 📜sonner.tsx
@@ -186,6 +188,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┗ 📜TierConfig.ts
  ┃ ┣ 📂hooks
  ┃ ┃ ┣ 📜useGithubUser.ts
+ ┃ ┃ ┣ 📜useShare.ts
  ┃ ┃ ┗ 📜useTitle.ts
  ┃ ┣ 📂lib
  ┃ ┃ ┗ 📜utils.ts
@@ -195,6 +198,7 @@ DevOrbit는 GitHub GraphQL API를 통해 조회한 데이터를 각 기능의 �
  ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┗ 📜NotFound.tsx
  ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📜copyClipboard.ts
  ┃ ┃ ┗ 📜formatDateRange.ts
  ┃ ┣ 📜App.tsx
  ┃ ┣ 📜index.css

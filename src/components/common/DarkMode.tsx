@@ -18,7 +18,7 @@ const DarkMode = () => {
       size="icon"
       onClick={() => setIsDark((prev) => !prev)}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className='bg-zinc-800 border-0 dark:bg-foreground hover:bg-zinc-200 dark:hover:bg-zinc-700'
+      className='bg-zinc-800 border-0 cursor-pointer dark:bg-foreground hover:bg-zinc-200 dark:hover:bg-zinc-700'
     >
       {isDark ? <FiSun className="text-orange-600" /> : <FiMoon className="text-yellow-500" />}
     </Button>
