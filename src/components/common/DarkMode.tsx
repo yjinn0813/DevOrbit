@@ -4,7 +4,15 @@ import { Button } from "./../ui/button";
 
 const DarkMode = () => {
   const [isDark, setIsDark] = useState(() => {
-    return localStorage.getItem("darkMode") === "true";
+    const savedTheme = localStorage.getItem("darkMode");
+
+    if (savedTheme === null) {
+      return true; // default: dark mode
+    }
+
+    return savedTheme === "true";
+    // 저장된 테마 설정이 있으면 해당 값 적용
+    // (localStorage는 값을 문자열로 저장함)
   });
 
   useEffect(() => {
