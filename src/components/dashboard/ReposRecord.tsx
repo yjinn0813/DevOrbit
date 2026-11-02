@@ -76,15 +76,21 @@ const ReposRecord = ({ repos }: ReposRecordProps) => {
           ) : (           
             <Tabs defaultValue={repos[0].repository}>
               {/* tabs */}
-              <TabsList className="h-auto justify-start gap-1 rounded-lg p-2">
+              <TabsList className="h-auto justify-start gap-1 rounded-lg p-2 
+                bg-primary/70
+                dark:bg-muted"
+              >
                 {repos.map(({ repository }) => (
                   <TabsTrigger
                     key={repository}
                     value={repository}
                     className='
                       flex-1 px-3 py-2.5
-                      transition-all
-                      hover:bg-accent
+                      transition-all cursor-pointer
+                      data-active:bg-primary/90
+                      hover:bg-primary/90 
+                      dark:hover:bg-background/60
+                      dark:data-active:bg-background/60
                     '
                   >
                     {repository}
@@ -142,8 +148,10 @@ const ReposRecord = ({ repos }: ReposRecordProps) => {
                     {/* heatmap tooltip */}
                     {tooltip && (
                       <div className='
-                        pointer-events-none fixed rounded-md border border-border bg-popover
-                        px-2.5 py-1.5 text-xs text-popover-foreground shadow-md
+                        pointer-events-none fixed rounded-md border border-secondary/50 
+                        bg-popover-foreground text-background
+                        dark:bg-popover dark:text-foreground
+                        px-2.5 py-1.5 text-xs shadow-md
                         z-50 -translate-x-1/2 -translate-y-full
                         '
                         style={{

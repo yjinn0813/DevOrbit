@@ -95,13 +95,21 @@ const RepoLangChart = ({ user }: LanguageChartProps) => {
                 value={selectedRepoName}
                 onValueChange={setSelectedRepoName}
               >
-                <SelectTrigger className="w-50">
+                <SelectTrigger className="w-50 
+                  bg-secondary/60 border border-secondary/50 text-foreground
+                  dark:bg-muted dark:text-foreground"
+                >
                   <SelectValue placeholder="Select a repository" />
                 </SelectTrigger>
 
-                <SelectContent>
+                <SelectContent className="bg-foreground border border-secondary/50 
+                  dark:bg-card"
+                >
                   {repos.map((repo) => (
-                    <SelectItem key={repo.name} value={repo.name}>
+                    <SelectItem key={repo.name} value={repo.name} 
+                      className="cursor-pointer text-background data-highlighted:bg-secondary
+                        dark:text-foreground dark:data-highlighted:bg-muted"
+                    >
                       {repo.name}
                     </SelectItem>
                   ))}
