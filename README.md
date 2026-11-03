@@ -3,57 +3,57 @@
 <br>
 <p align=center><img src="https://github.com/yjinn0813/DevOrbit/blob/main/public/images/LOGO.png" width="500"></p>
 <br>
-DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 활동 흐름과 Repository 정보를 시각적으로 확인할 수 있도록 구성한 개발자 대시보드입니다. GitHub GraphQL API를 기반으로 Contribution, Repository, Language 등의 데이터를 조회하고, 이를 차트와 통계 카드로 시각화합니다.
+DevOrbit는 GitHub 활동 데이터를 수집하고 가공하여, 개발자의 활동 흐름과 Repository 정보를 시각적으로 확인할 수 있도록 구성한 개발자 대시보드입니다. GitHub GraphQL API를 통해 Contribution, Repository, Language 등의 데이터를 조회하고, 이를 가공하여 Chart.js 기반의 차트와 통계 카드로 시각화합니다. 또한 활동 데이터를 기반으로 개발자 티어를 산정하는 기능을 제공하여 게임화 요소를 더했습니다.
 
 <br>
 <br>
 <br>
 
 ## 1. 프로젝트 목적
-- GitHub GraphQL API를 활용한 데이터 조회 및 가공 경험
-- Shadcn/ui와 Chart.js를 활용한 대시보드 UI 구성 및 데이터 시각화 학습
-- pnpm을 활용한 패키지 관리 및 프로젝트 의존성 관리 학습
-- React/TypeScript 기반의 컴포넌트 설계 및 비동기 데이터 처리 경험
+- GitHub GraphQL API를 활용한 개발 활동 데이터 조회 및 가공 경험
+- pnpm을 활용한 패키지 및 프로젝트 의존성 관리 경험
+- Shadcn/ui 프리셋 커스터마이징을 통한 디자인 시스템 구성 및 UI 설계
+- Chart.js를 활용한 데이터 시각화 및 차트 커스터마이징
 
 <br>
 
 ## 2. 개발 기간 & 단계
 - **기간**: 2026.09 ~ 2026.11
 - **개발 단계**:
-  - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 설계 (Shadcn/ui)
-  - Phase 2. 공통 레이아웃 & 페이지 구조 설계
+  - Phase 1. 프로젝트 초기 세팅 & 디자인 시스템 구축 (Shadcn/ui)
+  - Phase 2. 공통 레이아웃 및 페이지 구조 설계·구현
   - Phase 3. Dashboard 기능 구현 & GitHub API 연동 (Express)
   - Phase 4. API 아키텍처 리팩터링 & React Query 최적화
-  - Phase 5. 예외처리 & UI/UX Polish
-  - Phase 6. 빌드 및 배포 환경 구성
+  - Phase 5. API 예외 처리 & UI/UX 개선
+  - Phase 6. CI/CD 환경 구성 & Vercel 배포 및 이후 안정화
 
 <br>
 
 ## 3. 주요 기능 및 페이지 구성
 ### Home
-* GitHub GraphQL API를 활용한 username 검색
-* 검색 결과에 따른 Detail 페이지 이동
-* 잘못된 username 조회 시 Not Found 페이지 제공
-* GitHub API 또는 네트워크 오류 발생 시 Error 페이지 제공
+* GitHub GraphQL API를 활용한 username 검색 기능 제공
+* 검색 결과에 따른 페이지 분기
+  * 데이터 정상 조회 시, Detail 페이지로 이동 
+  * 존재하지 않는 username 조회 시, Not Found 페이지로 이동
+  * API 또는 네트워크 오류 발생 시, Error 페이지로 이동
 
 ### Detail
 * GitHub 사용자 프로필 및 기본 정보 제공
-* GitHub Contribution 데이터를 기반으로 한 Tier 제공
-* GitHub Contribution 및 Repository 통계 제공
+* GitHub 활동 데이터를 기반으로 한 개발자 Tier 산정
+* Contribution, Repository, Commit, Issue, Pull Request 등 활동 통계 제공
 * Chart.js를 활용한 월별·연도별 Contribution 추이 및 Top Languages 시각화
 * 최근 1년간 활동을 기준으로 한 Most Active Repository 제공
-* 연속 Contribution 기록을 기반으로 한 Longest Contribution Streak 제공
-* shadcn/ui를 활용한 Card, Tooltip, Input, Button 등 UI 구성
-* 각 데이터를 독립적인 Card Component로 구성
-* 반응형 레이아웃 및 외부 공유 기능 지원
+* 최장 연속 Contribution 기록(Longest Contribution Streak) 제공
+* 프로필 공유 기능 및 반응형 UI 지원
 
 ### Not Found
 * 존재하지 않는 경로 또는 GitHub 사용자를 조회한 경우 404 페이지 제공
 
 ### Error
-* GitHub API 또는 네트워크 오류 발생 시 에러 화면 제공
-* 데이터 재요청을 통한 재시도 기능 지원
-* 지원하지 않는 Organization 계정 검색 시 별도 안내 제공
+* GitHub API 또는 네트워크 오류 발생 시, 에러 화면 제공
+* 오류 유형에 따른 안내 메시지 제공
+* 재시도가 가능한 오류에 한해 데이터 재요청 기능 지원
+* 지원하지 않는 Organization 계정 검색 시, 별도 안내 제공
 
 <br>
 
